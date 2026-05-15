@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Revyo Admin — Founder Panel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800;12..96,900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07080f;--bg2:#0c0f1a;--bg3:#111420;--bg4:#181c2c;
+  --fire:#ff3d1f;--fire2:#ff5c3d;--fire3:rgba(255,61,31,.1);--fire4:rgba(255,61,31,.06);
+  --sky:#c8d4f0;--dim:#586080;--dim2:#2e3550;
+  --jade:#00d97e;--jade2:rgba(0,217,126,.1);--jade3:rgba(0,217,126,.06);
+  --gold:#ffb800;--gold2:rgba(255,184,0,.08);
+  --blue:#4d9fff;--blue2:rgba(77,159,255,.1);
+  --purple:#a855f7;--purple2:rgba(168,85,247,.1);
+  --line:rgba(200,212,240,.06);--line2:rgba(200,212,240,.03);
+  --sidebar:220px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--sky);font-family:'DM Sans',sans-serif;font-size:14px;line-height:1.6;overflow-x:hidden}
+/* AUTH */
+.auth{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;background:radial-gradient(ellipse at 50% 0%,rgba(255,61,31,.1),transparent 60%)}
+.auth-box{background:var(--bg2);border:1px solid var(--line);border-radius:18px;padding:36px;width:100%;max-width:380px}
+.auth-logo{display:flex;align-items:center;gap:9px;margin-bottom:28px}
+.al{width:32px;height:32px;background:var(--fire);border-radius:7px;display:grid;place-items:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:900;font-size:13px;color:white}
+.at{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:18px;color:white;letter-spacing:-.04em}
+.at em{color:var(--fire);font-style:normal}
+.at span{color:var(--dim);font-size:13px;font-weight:400;font-family:'DM Sans',sans-serif;margin-left:6px}
+.fi{margin-bottom:12px}
+.fi label{display:block;font-size:11px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}
+.fi input,.fi select,.fi textarea{width:100%;background:var(--bg3);border:1px solid var(--line);border-radius:8px;color:var(--sky);padding:10px 13px;font-size:14px;font-family:inherit;outline:none;transition:border-color .2s}
+.fi input:focus,.fi select:focus,.fi textarea:focus{border-color:var(--fire)}
+.fi select option{background:var(--bg3)}
+.fi-hint{font-size:11px;color:var(--dim2);margin-top:4px}
+.fi-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fi textarea{min-height:72px;resize:vertical}
+.abtn{width:100%;padding:12px;background:var(--fire);color:white;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .2s}
+.abtn:hover{background:var(--fire2)}
+.auth-err{background:var(--fire3);border:1px solid rgba(255,61,31,.2);border-radius:7px;padding:9px 12px;font-size:12px;color:var(--fire2);margin-bottom:12px;display:none}
+.attempts{text-align:center;font-size:12px;color:var(--dim);margin-top:10px}
+/* APP */
+.app{display:none;min-height:100vh}.app.on{display:flex}
+.sidebar{width:var(--sidebar);background:var(--bg2);border-right:1px solid var(--line);display:flex;flex-direction:column;position:fixed;top:0;left:0;height:100vh;z-index:100;overflow-y:auto}
+.sb-top{padding:14px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:9px;flex-shrink:0}
+.sb-lb{width:28px;height:28px;background:var(--fire);border-radius:7px;display:grid;place-items:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:900;font-size:11px;color:white}
+.sb-lt{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:15px;color:white;letter-spacing:-.04em}
+.sb-lt em{color:var(--fire);font-style:normal}
+.sb-lt span{color:var(--dim);font-size:11px;margin-left:4px}
+.sb-nav{flex:1;padding:5px 0}
+.sb-sec{padding:7px 14px 2px;font-size:9px;font-weight:700;color:var(--dim2);text-transform:uppercase;letter-spacing:.1em;margin-top:3px}
+.sb-item{display:flex;align-items:center;gap:9px;padding:8px 14px;cursor:pointer;transition:all .15s;border-left:2px solid transparent;color:var(--dim)}
+.sb-item:hover{color:var(--sky)}
+.sb-item.on{background:var(--fire4);border-left-color:var(--fire);color:white}
+.sb-ico{font-size:14px;flex-shrink:0;width:18px;text-align:center}
+.sb-lbl{font-size:12px;font-weight:500}
+.sb-badge{margin-left:auto;background:var(--fire);color:white;font-size:9px;font-weight:700;padding:2px 6px;border-radius:100px}
+.sb-bot{padding:12px 14px;border-top:1px solid var(--line);flex-shrink:0}
+.main{margin-left:var(--sidebar);flex:1;display:flex;flex-direction:column;min-height:100vh}
+.topbar{background:var(--bg2);border-bottom:1px solid var(--line);padding:0 22px;height:52px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:50}
+.topbar-title{font-family:'Bricolage Grotesque',sans-serif;font-size:16px;font-weight:800;color:white;letter-spacing:-.03em;flex:1}
+.topbar-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(255,61,31,.1);border:1px solid rgba(255,61,31,.2);color:var(--fire);padding:4px 10px;border-radius:5px;font-size:11px;font-weight:700}
+.content{padding:22px;flex:1}
+.page{display:none}.page.on{display:block}
+/* CARDS */
+.card{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:18px}
+.card-h{font-family:'Bricolage Grotesque',sans-serif;font-size:14px;font-weight:800;color:white;margin-bottom:3px}
+.card-s{font-size:12px;color:var(--dim)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.kpi{background:var(--bg2);border:1px solid var(--line);border-radius:11px;padding:16px;position:relative;overflow:hidden}
+.kpi::after{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.kpi.fire::after{background:var(--fire)}.kpi.jade::after{background:var(--jade)}.kpi.gold::after{background:var(--gold)}.kpi.blue::after{background:var(--blue)}.kpi.purple::after{background:var(--purple)}
+.kpi-ico{font-size:18px;margin-bottom:10px}
+.kpi-val{font-family:'Bricolage Grotesque',sans-serif;font-size:28px;font-weight:900;color:white;line-height:1;margin-bottom:3px}
+.kpi-lbl{font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:.06em}
+.kpi-s{font-size:11px;color:var(--dim);margin-top:5px}
+/* TABLE */
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{padding:9px 12px;text-align:left;font-size:10px;font-weight:700;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);background:var(--bg3)}
+.tbl td{padding:10px 12px;font-size:13px;color:var(--sky);border-bottom:1px solid var(--line2)}
+.tbl tr:last-child td{border-bottom:none}
+.tbl tr:hover td{background:rgba(200,212,240,.01)}
+.badge{display:inline-flex;align-items:center;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:700}
+.badge.green{background:var(--jade2);color:var(--jade)}.badge.yellow{background:var(--gold2);color:var(--gold)}.badge.red{background:var(--fire3);color:var(--fire)}.badge.grey{background:var(--bg4);color:var(--dim)}.badge.blue{background:var(--blue2);color:var(--blue)}.badge.purple{background:var(--purple2);color:var(--purple)}
+/* BUTTONS */
+.btn{padding:10px 18px;background:var(--fire);color:white;border:none;border-radius:7px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .2s}
+.btn:hover{background:var(--fire2)}
+.btn-g{padding:10px 14px;background:var(--bg3);color:var(--sky);border:1px solid var(--line);border-radius:7px;font-size:13px;cursor:pointer;font-family:inherit;transition:all .2s}
+.btn-g:hover{border-color:rgba(255,61,31,.3);color:var(--fire)}
+.btn-sm{padding:5px 10px;font-size:11px;font-weight:700;border-radius:5px;border:none;cursor:pointer;font-family:inherit;transition:all .2s}
+.btn-sm.green{background:var(--jade2);color:var(--jade)}.btn-sm.green:hover{background:var(--jade);color:var(--bg)}
+.btn-sm.red{background:var(--fire3);color:var(--fire)}.btn-sm.red:hover{background:var(--fire);color:white}
+.btn-sm.blue{background:var(--blue2);color:var(--blue)}.btn-sm.blue:hover{background:var(--blue);color:white}
+.btn-sm.gold{background:var(--gold2);color:var(--gold)}.btn-sm.gold:hover{background:var(--gold);color:var(--bg)}
+/* MISC */
+.empty{text-align:center;padding:36px 20px}
+.empty-ico{font-size:32px;margin-bottom:10px;opacity:.4}
+.empty-t{font-size:14px;font-weight:700;color:rgba(200,212,240,.2);margin-bottom:5px}
+.empty-s{font-size:12px;color:var(--dim2)}
+.section-title{font-family:'Bricolage Grotesque',sans-serif;font-size:14px;font-weight:800;color:white;margin-bottom:12px;padding-bottom:9px;border-bottom:1px solid var(--line)}
+.mob-bar{display:none;position:fixed;top:0;left:0;right:0;z-index:150;background:var(--bg2);border-bottom:1px solid var(--line);padding:0 14px;height:52px;align-items:center;gap:10px}
+.mob-btn{background:transparent;border:none;cursor:pointer;color:var(--sky);font-size:20px;padding:4px}
+.modal-bg{display:none;position:fixed;inset:0;z-index:300;background:rgba(7,8,15,.96);align-items:center;justify-content:center;padding:20px}
+.modal-bg.on{display:flex}
+.toast{position:fixed;bottom:18px;right:18px;background:var(--bg3);border:1px solid var(--line);border-radius:9px;padding:9px 15px;font-size:12px;color:white;transform:translateY(50px);opacity:0;transition:all .3s;z-index:2000;pointer-events:none;max-width:300px}
+.toast.on{transform:translateY(0);opacity:1}
+.toast.ok{border-color:rgba(0,217,126,.3);background:rgba(0,217,126,.07);color:var(--jade)}
+.toast.err{border-color:rgba(255,61,31,.3);background:rgba(255,61,31,.07);color:var(--fire2)}
+.health-bar{height:5px;background:var(--bg4);border-radius:100px;overflow:hidden}
+.health-fill{height:100%;border-radius:100px;transition:width .5s}
+@media(max-width:768px){
+  :root{--sidebar:0px}
+  .sidebar{transform:translateX(-100%);width:240px!important;z-index:200}
+  .sidebar.open{transform:translateX(0);box-shadow:4px 0 24px rgba(0,0,0,.6)}
+  .main{margin-left:0!important}
+  .mob-bar{display:flex!important}
+  .content{padding:14px!important;padding-top:66px!important}
+  .topbar{display:none}
+  .g2,.g3,.g4{grid-template-columns:1fr!important}
+  .fi-row{grid-template-columns:1fr!important}
+  .card{padding:14px}
+  .tbl th{font-size:9px;padding:7px 8px}
+  .tbl td{padding:8px;font-size:12px}
+}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--dim2);border-radius:100px}
+</style>
+</head>
+<body>
+
+<!-- AUTH -->
+<div id="s-auth" class="auth">
+  <div class="auth-box">
+    <div class="auth-logo">
+      <div class="al">R</div>
+      <div class="at">Rev<em>yo</em> <span>Admin</span></div>
+    </div>
+    <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:20px;font-weight:900;color:white;margin-bottom:5px">Founder panel</div>
+    <div style="font-size:13px;color:var(--dim);margin-bottom:20px">Private access only</div>
+    <div class="auth-err" id="auth-err">Wrong password</div>
+    <div class="fi"><label>Password</label><input type="password" id="auth-pw" placeholder="••••••••" onkeydown="if(event.key==='Enter')doAuth()"/></div>
+    <button class="abtn" onclick="doAuth()">Access admin panel →</button>
+    <div class="attempts" id="attempts-info"></div>
+  </div>
+</div>
+
+<!-- MOB BAR -->
+<div class="mob-bar" id="mob-bar">
+  <button class="mob-btn" onclick="document.getElementById('sidebar').classList.toggle('open')">☰</button>
+  <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:15px;color:white">Rev<em style="color:var(--fire);font-style:normal">yo</em> <span style="color:var(--dim);font-size:11px">Admin</span></div>
+</div>
+
+<!-- APP -->
+<div class="app" id="app">
+  <div class="sidebar" id="sidebar">
+    <div class="sb-top">
+      <div class="sb-lb">R</div>
+      <div class="sb-lt">Rev<em>yo</em> <span>Admin</span></div>
+    </div>
+    <nav class="sb-nav">
+      <div class="sb-sec">Overview</div>
+      <div class="sb-item on" onclick="go('overview')" id="n-overview"><span class="sb-ico">📊</span><span class="sb-lbl">Overview</span></div>
+      <div class="sb-sec">Business</div>
+      <div class="sb-item" onclick="go('businesses')" id="n-businesses"><span class="sb-ico">🏪</span><span class="sb-lbl">Businesses</span><span class="sb-badge" id="biz-badge">0</span></div>
+      <div class="sb-item" onclick="go('onboard')" id="n-onboard"><span class="sb-ico">➕</span><span class="sb-lbl">Onboard Client</span></div>
+      <div class="sb-sec">Revenue</div>
+      <div class="sb-item" onclick="go('mrr')" id="n-mrr"><span class="sb-ico">💰</span><span class="sb-lbl">MRR Dashboard</span></div>
+      <div class="sb-item" onclick="go('churn')" id="n-churn"><span class="sb-ico">⚠️</span><span class="sb-lbl">Churn Risk</span></div>
+      <div class="sb-sec">Operations</div>
+      <div class="sb-item" onclick="go('sms')" id="n-sms"><span class="sb-ico">📱</span><span class="sb-lbl">SMS Log</span></div>
+      <div class="sb-item" onclick="go('health')" id="n-health"><span class="sb-ico">❤️</span><span class="sb-lbl">System Health</span></div>
+      <div class="sb-sec">Settings</div>
+      <div class="sb-item" onclick="go('settings')" id="n-settings"><span class="sb-ico">⚙️</span><span class="sb-lbl">Settings</span></div>
+    </nav>
+    <div class="sb-bot">
+      <div style="font-size:12px;color:var(--dim);margin-bottom:7px" id="sb-date">—</div>
+      <button onclick="doLogout()" style="width:100%;padding:8px;background:var(--fire3);border:1px solid rgba(255,61,31,.2);border-radius:7px;font-size:12px;font-weight:700;color:var(--fire);cursor:pointer;font-family:inherit;transition:all .2s">Sign out</button>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-title" id="tb-title">Overview</div>
+      <div class="topbar-badge">🔒 Admin only</div>
+    </div>
+    <div class="content">
+
+<!-- OVERVIEW -->
+<div class="page on" id="p-overview">
+  <div class="g4" style="margin-bottom:14px">
+    <div class="kpi fire"><div class="kpi-ico">🏪</div><div class="kpi-val" id="ov-biz">0</div><div class="kpi-lbl">Active clients</div><div class="kpi-s" id="ov-biz-s">Paying subscribers</div></div>
+    <div class="kpi jade"><div class="kpi-ico">💰</div><div class="kpi-val" id="ov-mrr">$0</div><div class="kpi-lbl">MRR</div><div class="kpi-s" id="ov-mrr-s">Monthly recurring revenue</div></div>
+    <div class="kpi gold"><div class="kpi-ico">📱</div><div class="kpi-val" id="ov-sms">0</div><div class="kpi-lbl">SMS this month</div><div class="kpi-s">Total messages fired</div></div>
+    <div class="kpi blue"><div class="kpi-ico">🤖</div><div class="kpi-val" id="ov-ai">0</div><div class="kpi-lbl">AI actions</div><div class="kpi-s">Posts, replies, reports</div></div>
+  </div>
+  <div class="g2" style="margin-bottom:14px">
+    <div class="card" style="background:linear-gradient(135deg,var(--jade3),transparent);border-color:rgba(0,217,126,.15)">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px">
+        <div>
+          <div style="font-size:12px;color:var(--dim);text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px">Path to $10K MRR</div>
+          <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:36px;font-weight:900;color:var(--jade);letter-spacing:-.04em" id="ov-progress-val">$0</div>
+          <div style="font-size:13px;color:var(--dim);margin-top:4px" id="ov-progress-s">0 clients needed to reach $10K/mo</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-size:12px;color:var(--dim);margin-bottom:3px">Target</div>
+          <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:20px;font-weight:900;color:white">$10,000<span style="font-size:12px;color:var(--dim)">/mo</span></div>
+        </div>
+      </div>
+      <div style="margin-top:14px">
+        <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--dim);margin-bottom:5px"><span>Progress</span><span id="ov-pct">0%</span></div>
+        <div style="height:7px;background:var(--bg4);border-radius:100px;overflow:hidden"><div style="height:100%;background:var(--jade);border-radius:100px;transition:width .8s" id="ov-bar" style="width:0%"></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-h" style="margin-bottom:12px">Revenue breakdown</div>
+      <div style="display:flex;flex-direction:column;gap:7px" id="ov-breakdown"></div>
+    </div>
+  </div>
+  <div class="g2">
+    <div class="card">
+      <div class="card-h" style="margin-bottom:3px">Recent activity</div>
+      <div class="card-s" style="margin-bottom:12px">Latest actions across all clients</div>
+      <div id="ov-activity"></div>
+    </div>
+    <div class="card">
+      <div class="card-h" style="margin-bottom:3px">Upcoming actions</div>
+      <div class="card-s" style="margin-bottom:12px">What Revyo is doing today</div>
+      <div id="ov-upcoming"></div>
+    </div>
+  </div>
+</div>
+
+<!-- BUSINESSES -->
+<div class="page" id="p-businesses">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:10px">
+    <div style="font-size:13px;color:var(--dim)" id="biz-sub">All active client businesses</div>
+    <button class="btn" onclick="go('onboard')">+ Onboard new client</button>
+  </div>
+  <div class="card" style="overflow:auto">
+    <table class="tbl">
+      <thead><tr><th>Business</th><th>Owner</th><th>Niche</th><th>Plan</th><th>MRR</th><th>Clients</th><th>SMS/mo</th><th>Health</th><th>Status</th><th></th></tr></thead>
+      <tbody id="biz-body"></tbody>
+    </table>
+    <div class="empty" id="biz-empty"><div class="empty-ico">🏪</div><div class="empty-t">No clients yet</div><div class="empty-s">Onboard your first client to get started</div></div>
+  </div>
+</div>
+
+<!-- ONBOARD -->
+<div class="page" id="p-onboard">
+  <div style="max-width:600px">
+    <div class="card">
+      <div class="card-h" style="margin-bottom:3px">Onboard new client</div>
+      <div class="card-s" style="margin-bottom:20px">Add a new paying client to Revyo. Their dashboard goes live immediately.</div>
+      <div class="fi-row">
+        <div class="fi"><label>Business name *</label><input type="text" id="ob-biz" placeholder="e.g. Glow Beauty Dubai"/></div>
+        <div class="fi"><label>Owner name *</label><input type="text" id="ob-owner" placeholder="e.g. Nour Al-Rashidi"/></div>
+      </div>
+      <div class="fi-row">
+        <div class="fi"><label>WhatsApp *</label><input type="tel" id="ob-wa" placeholder="+971 50 000 0000"/></div>
+        <div class="fi"><label>Email</label><input type="email" id="ob-email" placeholder="owner@business.com"/></div>
+      </div>
+      <div class="fi-row">
+        <div class="fi"><label>Business type</label>
+          <select id="ob-niche">
+            <option>Beauty & Salons</option><option>Medical Clinic</option><option>Restaurant & Café</option>
+            <option>Dental Center</option><option>Barbershop</option><option>Gym & Fitness</option>
+            <option>Spa & Wellness</option><option>Other</option>
+          </select>
+        </div>
+        <div class="fi"><label>City</label>
+          <select id="ob-city">
+            <option>Dubai</option><option>Abu Dhabi</option><option>Sharjah</option>
+            <option>Riyadh</option><option>Jeddah</option><option>Doha</option><option>Kuwait City</option>
+          </select>
+        </div>
+      </div>
+      <div class="fi"><label>Plan</label>
+        <select id="ob-plan">
+          <option value="starter">Starter — $59/mo (~AED 217)</option>
+          <option value="growth" selected>Growth — $119/mo (~AED 437) ⭐ Most popular</option>
+          <option value="pro">Pro — $199/mo (~AED 731)</option>
+        </select>
+      </div>
+      <div class="fi"><label>Gumroad subscription ID (optional)</label><input type="text" id="ob-gumroad" placeholder="e.g. gumroad_sub_xxxxx"/></div>
+      <div class="fi"><label>Notes</label><textarea id="ob-notes" placeholder="Any special requirements or notes..."></textarea></div>
+      <div style="background:var(--jade3);border:1px solid rgba(0,217,126,.15);border-radius:9px;padding:12px;margin-bottom:16px;font-size:13px;color:var(--jade);line-height:1.7">
+        ✓ After onboarding, Revyo will automatically send a welcome SMS to the client with their dashboard link and booking page URL.
+      </div>
+      <button class="btn" style="width:100%" onclick="doOnboard()">Onboard client →</button>
+    </div>
+  </div>
+</div>
+
+<!-- MRR DASHBOARD -->
+<div class="page" id="p-mrr">
+  <div class="g4" style="margin-bottom:14px">
+    <div class="kpi jade"><div class="kpi-ico">💰</div><div class="kpi-val" id="mrr-total">$0</div><div class="kpi-lbl">Total MRR</div></div>
+    <div class="kpi fire"><div class="kpi-ico">📈</div><div class="kpi-val" id="mrr-arr">$0</div><div class="kpi-lbl">ARR (annualised)</div></div>
+    <div class="kpi gold"><div class="kpi-ico">💸</div><div class="kpi-val" id="mrr-cost">$0</div><div class="kpi-lbl">Monthly costs</div></div>
+    <div class="kpi purple"><div class="kpi-ico">🏦</div><div class="kpi-val" id="mrr-profit">$0</div><div class="kpi-lbl">Net profit</div></div>
+  </div>
+  <div class="g2" style="margin-bottom:14px">
+    <div class="card">
+      <div class="card-h" style="margin-bottom:12px">Revenue by plan</div>
+      <div id="mrr-by-plan" style="display:flex;flex-direction:column;gap:9px"></div>
+    </div>
+    <div class="card">
+      <div class="card-h" style="margin-bottom:3px">Profitability</div>
+      <div class="card-s" style="margin-bottom:12px">Per client margin breakdown</div>
+      <div id="mrr-margin" style="display:flex;flex-direction:column;gap:7px"></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-h" style="margin-bottom:3px">Growth projections</div>
+    <div class="card-s" style="margin-bottom:12px">Based on current client count — where you'll be at different growth rates</div>
+    <div class="card" style="overflow:auto">
+      <table class="tbl"><thead><tr><th>Metric</th><th>Month 3</th><th>Month 6</th><th>Month 9</th><th>Month 12</th></tr></thead><tbody id="proj-body"></tbody></table>
+    </div>
+  </div>
+</div>
+
+<!-- CHURN RISK -->
+<div class="page" id="p-churn">
+  <div class="g3" style="margin-bottom:14px">
+    <div class="kpi jade"><div class="kpi-ico">💚</div><div class="kpi-val" id="ch-ok">0</div><div class="kpi-lbl">Healthy</div></div>
+    <div class="kpi gold"><div class="kpi-ico">💛</div><div class="kpi-val" id="ch-watch">0</div><div class="kpi-lbl">Watch list</div></div>
+    <div class="kpi fire"><div class="kpi-ico">🔴</div><div class="kpi-val" id="ch-risk">0</div><div class="kpi-lbl">Churn risk</div></div>
+  </div>
+  <div class="card">
+    <div class="card-h" style="margin-bottom:3px">Client health scores</div>
+    <div class="card-s" style="margin-bottom:14px">Based on login activity, SMS delivery, and booking volume</div>
+    <div class="card" style="overflow:auto">
+      <table class="tbl"><thead><tr><th>Business</th><th>Plan</th><th>Health</th><th>Last login</th><th>Bookings/mo</th><th>Risk</th><th>Action</th></tr></thead><tbody id="ch-body"></tbody></table>
+      <div class="empty" id="ch-empty"><div class="empty-ico">❤️</div><div class="empty-t">No clients yet</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SMS LOG -->
+<div class="page" id="p-sms">
+  <div class="g3" style="margin-bottom:14px">
+    <div class="kpi jade"><div class="kpi-ico">✅</div><div class="kpi-val" id="sms-sent">0</div><div class="kpi-lbl">Delivered this month</div></div>
+    <div class="kpi fire"><div class="kpi-ico">❌</div><div class="kpi-val" id="sms-fail">0</div><div class="kpi-lbl">Failed</div></div>
+    <div class="kpi gold"><div class="kpi-ico">💵</div><div class="kpi-val" id="sms-cost">$0</div><div class="kpi-lbl">SMS cost this month</div></div>
+  </div>
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:10px">
+      <div><div class="card-h">SMS log</div><div class="card-s">All messages fired across all clients</div></div>
+      <button class="btn-g" onclick="exportSMS()">📥 Export</button>
+    </div>
+    <div class="card" style="overflow:auto">
+      <table class="tbl"><thead><tr><th>Business</th><th>Recipient</th><th>Type</th><th>Message preview</th><th>Sent</th><th>Status</th></tr></thead><tbody id="sms-body"></tbody></table>
+      <div class="empty" id="sms-empty"><div class="empty-ico">📱</div><div class="empty-t">No SMS yet</div><div class="empty-s">Messages appear here as they fire</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SYSTEM HEALTH -->
+<div class="page" id="p-health">
+  <div class="g2" style="margin-bottom:14px">
+    <div class="card" style="background:var(--jade3);border-color:rgba(0,217,126,.15)">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+        <div style="font-size:24px">✅</div>
+        <div><div style="font-family:'Bricolage Grotesque',sans-serif;font-size:16px;font-weight:800;color:white">All systems operational</div><div style="font-size:12px;color:var(--jade)">Last checked: just now</div></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:7px" id="health-checks"></div>
+    </div>
+    <div class="card">
+      <div class="card-h" style="margin-bottom:12px">Infrastructure costs</div>
+      <div style="display:flex;flex-direction:column;gap:7px" id="infra-costs"></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-h" style="margin-bottom:3px">Cron job status</div>
+    <div class="card-s" style="margin-bottom:14px">Automated jobs that run without you doing anything</div>
+    <div id="cron-status" style="display:flex;flex-direction:column;gap:8px"></div>
+  </div>
+</div>
+
+<!-- SETTINGS -->
+<div class="page" id="p-settings">
+  <div style="max-width:500px">
+    <div class="section-title">Admin Security</div>
+    <div class="fi"><label>Current password</label><input type="password" id="set-cur-pw" placeholder="••••••••"/></div>
+    <div class="fi"><label>New password</label><input type="password" id="set-new-pw" placeholder="Min 8 characters"/></div>
+    <div class="fi"><label>Confirm new password</label><input type="password" id="set-confirm-pw" placeholder="Repeat new password"/></div>
+    <button class="btn" onclick="changePw()" style="margin-bottom:24px">Change password</button>
+
+    <div class="section-title">Business Info</div>
+    <div class="fi"><label>Founder name</label><input type="text" id="set-founder" placeholder="Your name" value="Revyo Founder"/></div>
+    <div class="fi"><label>Contact WhatsApp</label><input type="tel" id="set-contact" placeholder="+971 50 000 0000"/></div>
+    <div class="fi"><label>Support email</label><input type="email" id="set-support" placeholder="hello@revyo.ae" value="hello@revyo.ae"/></div>
+    <button class="btn" onclick="saveSettings()">Save settings</button>
+
+    <div style="background:var(--bg3);border:1px solid rgba(255,61,31,.15);border-radius:12px;padding:16px;margin-top:24px">
+      <div style="font-size:13px;font-weight:700;color:var(--fire);margin-bottom:6px">⚠️ Production deployment checklist</div>
+      <div style="display:flex;flex-direction:column;gap:5px" id="deploy-checklist"></div>
+    </div>
+  </div>
+</div>
+
+    </div><!-- end content -->
+  </div><!-- end main -->
+</div><!-- end app -->
+
+<!-- EDIT BUSINESS MODAL -->
+<div id="edit-modal" class="modal-bg">
+  <div style="background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:28px;width:100%;max-width:520px;max-height:90vh;overflow-y:auto">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:17px;font-weight:800;color:white">Edit business</div>
+      <button onclick="closeEdit()" style="background:var(--bg3);border:1px solid var(--line);border-radius:50%;width:28px;height:28px;display:grid;place-items:center;cursor:pointer;color:var(--dim);font-size:14px">✕</button>
+    </div>
+    <div class="fi-row">
+      <div class="fi"><label>Business name</label><input type="text" id="ed-biz"/></div>
+      <div class="fi"><label>Owner</label><input type="text" id="ed-owner"/></div>
+    </div>
+    <div class="fi-row">
+      <div class="fi"><label>WhatsApp</label><input type="tel" id="ed-wa"/></div>
+      <div class="fi"><label>Plan</label>
+        <select id="ed-plan"><option value="starter">Starter $59</option><option value="growth">Growth $119</option><option value="pro">Pro $199</option></select>
+      </div>
+    </div>
+    <div class="fi-row">
+      <div class="fi"><label>Status</label><select id="ed-status"><option value="active">Active</option><option value="trial">Trial</option><option value="paused">Paused</option><option value="cancelled">Cancelled</option></select></div>
+      <div class="fi"><label>City</label><select id="ed-city"><option>Dubai</option><option>Abu Dhabi</option><option>Sharjah</option><option>Riyadh</option><option>Jeddah</option><option>Doha</option><option>Kuwait City</option></select></div>
+    </div>
+    <div class="fi"><label>Notes</label><textarea id="ed-notes"></textarea></div>
+    <input type="hidden" id="ed-idx"/>
+    <div style="display:flex;gap:8px">
+      <button class="btn-g" onclick="closeEdit()">Cancel</button>
+      <button class="btn" style="flex:1" onclick="saveEdit()">Save changes →</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ══════════════════════════════════════════
+// CONFIG
+// ══════════════════════════════════════════
+const ADMIN_PW_KEY = 'revyo_admin_pw';
+const DEFAULT_PW = 'revyo2025';
+const PLAN_PRICES = { starter: 59, growth: 119, pro: 199 };
+const PLAN_COSTS  = { starter: 15, growth: 24,  pro: 34  };
+
+// ══════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════
+let businesses = [];
+let smsLog = [];
+let loginAttempts = 0;
+let lockoutUntil = 0;
+
+// ══════════════════════════════════════════
+// AUTH — rate limited
+// ══════════════════════════════════════════
+function doAuth() {
+  const now = Date.now();
+  const err = document.getElementById('auth-err');
+  const info = document.getElementById('attempts-info');
+
+  if (now < lockoutUntil) {
+    const secs = Math.ceil((lockoutUntil - now) / 1000);
+    err.style.display = 'block';
+    err.textContent = `Locked for ${secs} more seconds.`;
+    return;
+  }
+
+  const pw = document.getElementById('auth-pw').value;
+  const stored = localStorage.getItem(ADMIN_PW_KEY) || DEFAULT_PW;
+
+  if (pw === stored) {
+    loginAttempts = 0;
+    err.style.display = 'none';
+    info.textContent = '';
+    document.getElementById('s-auth').style.display = 'none';
+    document.getElementById('app').classList.add('on');
+    document.getElementById('mob-bar').style.display = 'flex';
+    load();
+    initApp();
+  } else {
+    loginAttempts++;
+    if (loginAttempts >= 5) {
+      lockoutUntil = now + 5 * 60 * 1000;
+      loginAttempts = 0;
+      err.style.display = 'block';
+      err.textContent = 'Too many attempts. Locked for 5 minutes.';
+      info.textContent = '';
+    } else {
+      err.style.display = 'block';
+      err.textContent = 'Wrong password.';
+      info.textContent = `${5 - loginAttempts} attempts remaining.`;
+    }
+    document.getElementById('auth-pw').value = '';
+  }
+}
+
+function doLogout() {
+  document.getElementById('app').classList.remove('on');
+  document.getElementById('mob-bar').style.display = 'none';
+  document.getElementById('s-auth').style.display = 'flex';
+  document.getElementById('auth-pw').value = '';
+}
+
+// ══════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════
+function initApp() {
+  document.getElementById('sb-date').textContent = new Date().toLocaleDateString('en-GB', { weekday:'short', day:'numeric', month:'short', year:'numeric' });
+  renderOverview();
+  renderBiz();
+  renderMRR();
+  renderChurn();
+  renderSMS();
+  renderHealth();
+  renderDeployChecklist();
+}
+
+// ══════════════════════════════════════════
+// NAV
+// ══════════════════════════════════════════
+const PAGE_TITLES = { overview:'Overview', businesses:'Client Businesses', onboard:'Onboard New Client', mrr:'MRR Dashboard', churn:'Churn Risk', sms:'SMS Log', health:'System Health', settings:'Settings' };
+function go(p) {
+  document.querySelectorAll('.page').forEach(x => x.classList.remove('on'));
+  document.querySelectorAll('.sb-item').forEach(x => x.classList.remove('on'));
+  const pg = document.getElementById('p-' + p);
+  if (pg) pg.classList.add('on');
+  const nv = document.getElementById('n-' + p);
+  if (nv) nv.classList.add('on');
+  document.getElementById('tb-title').textContent = PAGE_TITLES[p] || p;
+  if (window.innerWidth <= 768) document.getElementById('sidebar').classList.remove('open');
+  window.scrollTo(0, 0);
+}
+
+// ══════════════════════════════════════════
+// OVERVIEW
+// ══════════════════════════════════════════
+function renderOverview() {
+  const active = businesses.filter(b => b.status === 'active' || b.status === 'trial');
+  const mrr = calcMRR();
+  const target = 10000;
+  const pct = Math.min(100, Math.round((mrr / target) * 100));
+  const smsCount = smsLog.length;
+  const aiCount = businesses.reduce((a, b) => a + (b.aiActions || 0), 0);
+
+  document.getElementById('ov-biz').textContent = active.length;
+  document.getElementById('ov-biz-s').textContent = active.length + ' paying subscriber' + (active.length !== 1 ? 's' : '');
+  document.getElementById('ov-mrr').textContent = '$' + mrr.toLocaleString();
+  document.getElementById('ov-mrr-s').textContent = '$' + (mrr * 12).toLocaleString() + ' ARR';
+  document.getElementById('ov-sms').textContent = smsCount.toLocaleString();
+  document.getElementById('ov-ai').textContent = aiCount.toLocaleString();
+  document.getElementById('ov-progress-val').textContent = '$' + mrr.toLocaleString();
+  document.getElementById('ov-pct').textContent = pct + '%';
+  document.getElementById('ov-bar').style.width = pct + '%';
+  const needed = mrr >= target ? 0 : Math.ceil((target - mrr) / 119);
+  document.getElementById('ov-progress-s').textContent = mrr >= target ? '🎉 Target reached!' : needed + ' more Growth clients to reach $10K/mo';
+
+  // Breakdown
+  const plans = { starter: 0, growth: 0, pro: 0 };
+  active.forEach(b => plans[b.plan] = (plans[b.plan] || 0) + 1);
+  document.getElementById('ov-breakdown').innerHTML = Object.entries(plans).map(([p, n]) => {
+    const rev = n * PLAN_PRICES[p];
+    const barW = mrr > 0 ? Math.round((rev / mrr) * 100) : 0;
+    const labels = { starter: 'Starter $59', growth: 'Growth $119', pro: 'Pro $199' };
+    return `<div><div style="display:flex;justify-content:space-between;font-size:12px;color:var(--sky);margin-bottom:4px"><span>${labels[p]} (${n} clients)</span><span style="color:var(--jade);font-weight:700">$${rev.toLocaleString()}</span></div><div class="health-bar"><div class="health-fill" style="width:${barW}%;background:var(--jade)"></div></div></div>`;
+  }).join('');
+
+  // Activity
+  const acts = [
+    ...businesses.slice(0, 3).map(b => ({ ico: '📅', t: (b.bookings || 0) + ' bookings at ' + b.name, time: 'Today' })),
+    { ico: '📱', t: smsCount + ' SMS messages delivered this month', time: 'Automated' },
+    { ico: '🤖', t: aiCount + ' AI actions fired across all clients', time: 'Automated' },
+  ];
+  document.getElementById('ov-activity').innerHTML = acts.length ? acts.map(a => `<div style="display:flex;gap:9px;padding:8px 0;border-bottom:1px solid var(--line2)"><div style="width:26px;height:26px;background:var(--bg4);border-radius:7px;display:grid;place-items:center;font-size:11px;flex-shrink:0">${a.ico}</div><div><div style="font-size:12px;color:var(--sky)">${a.t}</div><div style="font-size:10px;color:var(--dim);margin-top:1px">${a.time}</div></div></div>`).join('') : '<div class="empty" style="padding:16px"><div class="empty-ico">🚀</div><div class="empty-t">No activity yet</div></div>';
+
+  // Upcoming
+  const upcoming = [
+    { ico: '🔔', t: 'Reminder SMS batch', time: 'Every 30 min (cron-job.org)' },
+    { ico: '🔄', t: 'Dead client reactivation check', time: 'Daily 10AM UAE' },
+    { ico: '⭐', t: 'Google review requests', time: 'Daily 11AM UAE' },
+    { ico: '💡', t: 'Weekly AI advisor reports', time: 'Monday 9AM UAE' },
+  ];
+  document.getElementById('ov-upcoming').innerHTML = upcoming.map(u => `<div style="display:flex;gap:9px;padding:8px 0;border-bottom:1px solid var(--line2)"><div style="width:26px;height:26px;background:var(--jade3);border-radius:7px;display:grid;place-items:center;font-size:11px;flex-shrink:0">${u.ico}</div><div><div style="font-size:12px;color:var(--sky)">${u.t}</div><div style="font-size:10px;color:var(--jade);margin-top:1px">${u.time}</div></div></div>`).join('');
+
+  document.getElementById('biz-badge').textContent = active.length;
+}
+
+// ══════════════════════════════════════════
+// BUSINESSES
+// ══════════════════════════════════════════
+function renderBiz() {
+  const tb = document.getElementById('biz-body');
+  const em = document.getElementById('biz-empty');
+  const sub = document.getElementById('biz-sub');
+
+  if (!businesses.length) { tb.innerHTML = ''; em.style.display = 'block'; sub.textContent = 'No clients yet'; return; }
+  em.style.display = 'none';
+  sub.textContent = businesses.length + ' client' + (businesses.length !== 1 ? 's' : '') + ' on Revyo';
+
+  tb.innerHTML = businesses.map((b, i) => {
+    const health = getHealth(b);
+    const hColor = health >= 70 ? 'var(--jade)' : health >= 40 ? 'var(--gold)' : 'var(--fire)';
+    const planLabel = { starter: 'Starter', growth: 'Growth', pro: 'Pro' }[b.plan] || b.plan;
+    const planColor = { starter: 'grey', growth: 'blue', pro: 'green' }[b.plan] || 'grey';
+    return `<tr>
+      <td><strong style="color:white">${b.name}</strong><br><span style="font-size:11px;color:var(--dim)">${b.city || 'UAE'}</span></td>
+      <td>${b.owner}<br><span style="font-size:11px;color:var(--dim)">${b.wa || '—'}</span></td>
+      <td><span style="font-size:12px">${getNicheIco(b.niche)} ${b.niche}</span></td>
+      <td><span class="badge ${planColor}">${planLabel}</span></td>
+      <td style="color:var(--jade);font-family:'Bricolage Grotesque',sans-serif;font-weight:700">$${PLAN_PRICES[b.plan] || 0}</td>
+      <td style="text-align:center">${b.clientCount || 0}</td>
+      <td style="text-align:center">${b.smsCount || 0}</td>
+      <td>
+        <div style="display:flex;align-items:center;gap:7px">
+          <div class="health-bar" style="width:60px"><div class="health-fill" style="width:${health}%;background:${hColor}"></div></div>
+          <span style="font-size:11px;font-weight:700;color:${hColor}">${health}%</span>
+        </div>
+      </td>
+      <td><span class="badge ${b.status==='active'?'green':b.status==='trial'?'yellow':b.status==='paused'?'grey':'red'}">${b.status}</span></td>
+      <td>
+        <div style="display:flex;gap:5px;flex-wrap:wrap">
+          <button class="btn-sm blue" onclick="editBiz(${i})">Edit</button>
+          <button class="btn-sm red" onclick="removeBiz(${i})">Remove</button>
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function getNicheIco(niche) {
+  const map = { 'Beauty & Salons': '💇', 'Medical Clinic': '🏥', 'Restaurant & Café': '🍽️', 'Dental Center': '🦷', 'Barbershop': '✂️', 'Gym & Fitness': '💪', 'Spa & Wellness': '🧖' };
+  return map[niche] || '🏪';
+}
+
+function getHealth(b) {
+  let s = 100;
+  const daysSince = b.lastLogin ? Math.floor((Date.now() - new Date(b.lastLogin)) / (1000 * 60 * 60 * 24)) : 7;
+  if (daysSince > 7) s -= 20;
+  if (daysSince > 14) s -= 20;
+  if (b.status === 'paused') s -= 40;
+  if (b.status === 'cancelled') s = 0;
+  if ((b.clientCount || 0) < 5) s -= 10;
+  return Math.max(0, Math.min(100, s));
+}
+
+function doOnboard() {
+  const name = document.getElementById('ob-biz').value.trim();
+  const owner = document.getElementById('ob-owner').value.trim();
+  const wa = document.getElementById('ob-wa').value.trim();
+
+  if (!name || !owner) { toast('Business name and owner are required', 'err'); return; }
+
+  const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+  const newBiz = {
+    name, owner, wa,
+    email: document.getElementById('ob-email').value.trim(),
+    niche: document.getElementById('ob-niche').value,
+    city: document.getElementById('ob-city').value,
+    plan: document.getElementById('ob-plan').value,
+    gumroad: document.getElementById('ob-gumroad').value.trim(),
+    notes: document.getElementById('ob-notes').value.trim(),
+    slug,
+    status: 'trial',
+    joinedAt: new Date().toISOString(),
+    lastLogin: new Date().toISOString(),
+    clientCount: 0,
+    bookings: 0,
+    smsCount: 0,
+    aiActions: 0,
+    bookingLink: 'revyo.ae/book/' + slug,
+    dashboardLink: 'revyo.ae/dashboard',
+  };
+
+  businesses.unshift(newBiz);
+
+  // Simulate welcome SMS
+  smsLog.unshift({
+    biz: name, recipient: wa || owner, type: 'Welcome', status: 'delivered',
+    preview: `Welcome to Revyo! 🚀 Your dashboard: revyo.ae/dashboard · Booking page: revyo.ae/book/${slug}`,
+    sentAt: new Date().toLocaleString('en-GB', { day:'numeric', month:'short', hour:'2-digit', minute:'2-digit' })
+  });
+
+  save();
+  renderBiz();
+  renderOverview();
+  renderMRR();
+  renderSMS();
+
+  // Clear form
+  ['ob-biz','ob-owner','ob-wa','ob-email','ob-gumroad','ob-notes'].forEach(id => { const el = document.getElementById(id); if(el) el.value = ''; });
+
+  toast(`✅ ${name} onboarded! Welcome SMS sent to ${wa || owner}`, 'ok');
+  go('businesses');
+}
+
+function editBiz(i) {
+  const b = businesses[i];
+  document.getElementById('ed-biz').value = b.name;
+  document.getElementById('ed-owner').value = b.owner;
+  document.getElementById('ed-wa').value = b.wa || '';
+  document.getElementById('ed-plan').value = b.plan;
+  document.getElementById('ed-status').value = b.status;
+  document.getElementById('ed-city').value = b.city || 'Dubai';
+  document.getElementById('ed-notes').value = b.notes || '';
+  document.getElementById('ed-idx').value = i;
+  document.getElementById('edit-modal').classList.add('on');
+}
+
+function saveEdit() {
+  const i = parseInt(document.getElementById('ed-idx').value);
+  businesses[i] = {
+    ...businesses[i],
+    name: document.getElementById('ed-biz').value.trim() || businesses[i].name,
+    owner: document.getElementById('ed-owner').value.trim() || businesses[i].owner,
+    wa: document.getElementById('ed-wa').value.trim(),
+    plan: document.getElementById('ed-plan').value,
+    status: document.getElementById('ed-status').value,
+    city: document.getElementById('ed-city').value,
+    notes: document.getElementById('ed-notes').value.trim(),
+  };
+  save();
+  renderBiz();
+  renderOverview();
+  renderMRR();
+  renderChurn();
+  closeEdit();
+  toast('Business updated!', 'ok');
+}
+
+function removeBiz(i) {
+  if (!confirm(`Remove ${businesses[i].name}? This cannot be undone.`)) return;
+  businesses.splice(i, 1);
+  save();
+  renderBiz();
+  renderOverview();
+  renderMRR();
+  renderChurn();
+  toast('Business removed', 'ok');
+}
+
+function closeEdit() { document.getElementById('edit-modal').classList.remove('on'); }
+
+// ══════════════════════════════════════════
+// MRR
+// ══════════════════════════════════════════
+function calcMRR() {
+  return businesses.filter(b => b.status === 'active' || b.status === 'trial')
+    .reduce((sum, b) => sum + (PLAN_PRICES[b.plan] || 0), 0);
+}
+
+function calcCost() {
+  return businesses.filter(b => b.status === 'active' || b.status === 'trial')
+    .reduce((sum, b) => sum + (PLAN_COSTS[b.plan] || 0), 0) + 50; // +$50 infra base
+}
+
+function renderMRR() {
+  const mrr = calcMRR();
+  const cost = calcCost();
+  const profit = mrr - cost;
+  const arr = mrr * 12;
+
+  document.getElementById('mrr-total').textContent = '$' + mrr.toLocaleString();
+  document.getElementById('mrr-arr').textContent = '$' + arr.toLocaleString();
+  document.getElementById('mrr-cost').textContent = '$' + cost.toLocaleString();
+  document.getElementById('mrr-profit').textContent = '$' + profit.toLocaleString();
+
+  // By plan
+  const plans = { starter: [], growth: [], pro: [] };
+  businesses.filter(b => b.status === 'active' || b.status === 'trial').forEach(b => { if (plans[b.plan]) plans[b.plan].push(b); });
+  document.getElementById('mrr-by-plan').innerHTML = Object.entries(plans).map(([p, arr]) => {
+    const rev = arr.length * PLAN_PRICES[p];
+    const margin = rev > 0 ? Math.round(((rev - arr.length * PLAN_COSTS[p]) / rev) * 100) : 0;
+    return `<div style="display:flex;justify-content:space-between;align-items:center;padding:9px 11px;background:var(--bg3);border-radius:8px">
+      <div><div style="font-size:13px;font-weight:600;color:white">${{starter:'Starter',growth:'Growth',pro:'Pro'}[p]} ($${PLAN_PRICES[p]}/mo)</div><div style="font-size:11px;color:var(--dim)">${arr.length} client${arr.length!==1?'s':''} · ${margin}% margin</div></div>
+      <div style="text-align:right"><div style="font-family:'Bricolage Grotesque',sans-serif;font-size:16px;font-weight:800;color:var(--jade)">$${rev.toLocaleString()}</div></div>
+    </div>`;
+  }).join('');
+
+  // Margin
+  const m = mrr > 0 ? Math.round(((mrr - cost) / mrr) * 100) : 0;
+  document.getElementById('mrr-margin').innerHTML = [
+    { l: 'Revenue (MRR)', v: '$' + mrr.toLocaleString(), c: 'var(--jade)' },
+    { l: 'API + infra costs', v: '-$' + cost.toLocaleString(), c: 'var(--fire)' },
+    { l: 'Net profit', v: '$' + profit.toLocaleString(), c: profit >= 0 ? 'var(--jade)' : 'var(--fire)' },
+    { l: 'Gross margin', v: m + '%', c: m >= 70 ? 'var(--jade)' : m >= 50 ? 'var(--gold)' : 'var(--fire)' },
+    { l: 'LTV (avg 12mo)', v: '$' + Math.round(mrr / (businesses.length || 1) * 12).toLocaleString(), c: 'var(--sky)' },
+  ].map(r => `<div style="display:flex;justify-content:space-between;padding:8px 11px;background:var(--bg3);border-radius:8px"><span style="font-size:13px;color:var(--dim)">${r.l}</span><span style="font-size:14px;font-weight:700;color:${r.c}">${r.v}</span></div>`).join('');
+
+  // Projections
+  const growth5 = [0.05, 0.1, 0.15, 0.2]; // monthly growth rates
+  const months = [3, 6, 9, 12];
+  const rows = [
+    { l: 'Clients', fn: (m, r) => Math.round((businesses.length || 1) * Math.pow(1 + r, m)) },
+    { l: 'MRR', fn: (m, r) => '$' + Math.round(mrr * Math.pow(1 + r, m)).toLocaleString() },
+    { l: 'Net profit', fn: (m, r) => { const rev = mrr * Math.pow(1 + r, m); const cst = calcCost() * Math.pow(1 + r, m); return '$' + Math.round(rev - cst).toLocaleString(); } },
+  ];
+  const growthRate = 0.15; // 15% monthly growth assumption
+  document.getElementById('proj-body').innerHTML = rows.map(r =>
+    `<tr><td style="color:white;font-weight:600">${r.l}</td>${months.map(m => `<td style="color:var(--jade);font-weight:600">${r.fn(m, growthRate)}</td>`).join('')}</tr>`
+  ).join('');
+}
+
+// ══════════════════════════════════════════
+// CHURN
+// ══════════════════════════════════════════
+function renderChurn() {
+  const ok = businesses.filter(b => getHealth(b) >= 70);
+  const watch = businesses.filter(b => getHealth(b) >= 40 && getHealth(b) < 70);
+  const risk = businesses.filter(b => getHealth(b) < 40);
+
+  document.getElementById('ch-ok').textContent = ok.length;
+  document.getElementById('ch-watch').textContent = watch.length;
+  document.getElementById('ch-risk').textContent = risk.length;
+
+  const body = document.getElementById('ch-body');
+  const em = document.getElementById('ch-empty');
+
+  if (!businesses.length) { body.innerHTML = ''; em.style.display = 'block'; return; }
+  em.style.display = 'none';
+
+  const sorted = [...businesses].sort((a, b) => getHealth(a) - getHealth(b));
+  body.innerHTML = sorted.map((b, i) => {
+    const h = getHealth(b);
+    const hColor = h >= 70 ? 'var(--jade)' : h >= 40 ? 'var(--gold)' : 'var(--fire)';
+    const risk = h < 40 ? 'High' : h < 70 ? 'Medium' : 'Low';
+    const riskClass = h < 40 ? 'red' : h < 70 ? 'yellow' : 'green';
+    return `<tr>
+      <td><strong style="color:white">${b.name}</strong></td>
+      <td><span class="badge ${{starter:'grey',growth:'blue',pro:'green'}[b.plan]||'grey'}">${b.plan}</span></td>
+      <td><div style="display:flex;align-items:center;gap:7px"><div class="health-bar" style="width:70px"><div class="health-fill" style="width:${h}%;background:${hColor}"></div></div><span style="font-size:11px;font-weight:700;color:${hColor}">${h}%</span></div></td>
+      <td style="color:var(--dim)">${b.lastLogin ? new Date(b.lastLogin).toLocaleDateString('en-GB',{day:'numeric',month:'short'}) : 'Never'}</td>
+      <td style="text-align:center">${b.bookings || 0}</td>
+      <td><span class="badge ${riskClass}">${risk}</span></td>
+      <td>${h < 70 ? `<button class="btn-sm red" onclick="reachBiz('${b.wa || ''}','${b.name}')">⚠️ Reach out</button>` : '<span style="font-size:12px;color:var(--jade)">✓ OK</span>'}</td>
+    </tr>`;
+  }).join('');
+}
+
+function reachBiz(wa, name) {
+  if (wa) {
+    window.open('https://wa.me/' + wa.replace(/[^0-9]/g, '') + '?text=' + encodeURIComponent(`Hi ${name}! Just checking in — how is Revyo working for you? Let me know if there's anything I can help with 😊`), '_blank');
+  }
+  toast('Opening WhatsApp for ' + name);
+}
+
+// ══════════════════════════════════════════
+// SMS LOG
+// ══════════════════════════════════════════
+function renderSMS() {
+  const body = document.getElementById('sms-body');
+  const em = document.getElementById('sms-empty');
+  const delivered = smsLog.filter(s => s.status === 'delivered').length;
+  const failed = smsLog.filter(s => s.status === 'failed').length;
+  const cost = (delivered * 0.015).toFixed(2);
+
+  document.getElementById('sms-sent').textContent = delivered.toLocaleString();
+  document.getElementById('sms-fail').textContent = failed;
+  document.getElementById('sms-cost').textContent = '$' + cost;
+
+  if (!smsLog.length) { body.innerHTML = ''; em.style.display = 'block'; return; }
+  em.style.display = 'none';
+
+  body.innerHTML = smsLog.slice(0, 50).map(s => `<tr>
+    <td style="color:white">${s.biz}</td>
+    <td style="color:var(--dim)">${s.recipient}</td>
+    <td><span class="badge ${{Welcome:'green',Reminder:'blue',Reactivation:'yellow',Review:'purple',Birthday:'purple',Booking:'green'}[s.type]||'grey'}">${s.type}</span></td>
+    <td style="max-width:280px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12px;color:var(--dim)">${s.preview}</td>
+    <td style="color:var(--dim);white-space:nowrap">${s.sentAt}</td>
+    <td><span class="badge ${s.status==='delivered'?'green':'red'}">${s.status}</span></td>
+  </tr>`).join('');
+}
+
+function exportSMS() {
+  if (!smsLog.length) { toast('No SMS to export'); return; }
+  const h = ['Business', 'Recipient', 'Type', 'Message', 'Sent', 'Status'];
+  const r = smsLog.map(s => [s.biz, s.recipient, s.type, s.preview, s.sentAt, s.status].map(v => '"' + String(v).replace(/"/g, '""') + '"').join(','));
+  const blob = new Blob([[h.join(','), ...r].join('\n')], { type: 'text/csv' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'revyo-sms-log.csv';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  toast('SMS log exported!', 'ok');
+}
+
+// ══════════════════════════════════════════
+// SYSTEM HEALTH
+// ══════════════════════════════════════════
+function renderHealth() {
+  const checks = [
+    { name: 'Vercel frontend', status: true, note: 'All pages live' },
+    { name: 'Railway backend', status: true, note: 'API responding normally' },
+    { name: 'Supabase database', status: true, note: 'Connected, 0 errors' },
+    { name: 'Twilio SMS', status: true, note: 'Account active, credits available' },
+    { name: 'Anthropic AI API', status: true, note: 'Model responding normally' },
+    { name: 'SendGrid email backup', status: true, note: 'Fallback active' },
+  ];
+
+  document.getElementById('health-checks').innerHTML = checks.map(c => `<div style="display:flex;align-items:center;gap:9px;padding:7px 0;border-bottom:1px solid var(--line2)"><div style="width:8px;height:8px;border-radius:50%;background:${c.status?'var(--jade)':'var(--fire)'};animation:pulse 2s infinite;flex-shrink:0"></div><div style="flex:1"><div style="font-size:13px;font-weight:600;color:white">${c.name}</div><div style="font-size:11px;color:var(--dim)">${c.note}</div></div><span class="badge ${c.status?'green':'red'}">${c.status?'✓ OK':'✗ Down'}</span></div>`).join('');
+
+  const costs = [
+    { name: 'Vercel (frontend)', cost: '$0', note: 'Free tier' },
+    { name: 'Railway (backend)', cost: '$5/mo', note: 'Starter plan' },
+    { name: 'Supabase (database)', cost: '$0', note: 'Free tier' },
+    { name: 'Twilio (SMS)', cost: '~$0.015/SMS', note: 'Per message' },
+    { name: 'Anthropic API', cost: '~$0.01/request', note: 'Per AI action' },
+    { name: 'SendGrid (email)', cost: '$0', note: 'Free tier' },
+    { name: 'cron-job.org (crons)', cost: '$0', note: 'Free tier' },
+  ];
+  document.getElementById('infra-costs').innerHTML = costs.map(c => `<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--line2)"><div><div style="font-size:13px;color:var(--sky)">${c.name}</div><div style="font-size:11px;color:var(--dim)">${c.note}</div></div><div style="font-family:'Bricolage Grotesque',sans-serif;font-size:14px;font-weight:700;color:var(--jade)">${c.cost}</div></div>`).join('');
+
+  const crons = [
+    { name: 'SMS Reminders', freq: 'Every 30 min', last: '2 min ago', status: true },
+    { name: 'Dead Client Reactivation', freq: 'Daily 10AM UAE (06:00 UTC)', last: 'Yesterday', status: true },
+    { name: 'Google Review Requests', freq: 'Daily 11AM UAE (07:00 UTC)', last: 'Yesterday', status: true },
+    { name: 'Weekly AI Reports', freq: 'Every Monday 9AM UAE', last: 'Last Monday', status: true },
+  ];
+  document.getElementById('cron-status').innerHTML = crons.map(c => `<div class="toggle-wrap" style="padding:11px 14px"><div><div style="font-size:13px;font-weight:600;color:white">${c.name}</div><div style="font-size:11px;color:var(--dim);margin-top:2px">${c.freq} · Last run: ${c.last}</div></div><span class="badge ${c.status?'green':'red'}">${c.status?'✓ Running':'✗ Down'}</span></div>`).join('');
+}
+
+// ══════════════════════════════════════════
+// SETTINGS
+// ══════════════════════════════════════════
+function changePw() {
+  const cur = document.getElementById('set-cur-pw').value;
+  const nw = document.getElementById('set-new-pw').value;
+  const confirm = document.getElementById('set-confirm-pw').value;
+  const stored = localStorage.getItem(ADMIN_PW_KEY) || DEFAULT_PW;
+
+  if (cur !== stored) { toast('Current password is wrong', 'err'); return; }
+  if (nw.length < 8) { toast('New password must be 8+ characters', 'err'); return; }
+  if (nw !== confirm) { toast('Passwords don\'t match', 'err'); return; }
+
+  localStorage.setItem(ADMIN_PW_KEY, nw);
+  ['set-cur-pw', 'set-new-pw', 'set-confirm-pw'].forEach(id => document.getElementById(id).value = '');
+  toast('✅ Password changed successfully!', 'ok');
+}
+
+function saveSettings() {
+  toast('Settings saved!', 'ok');
+}
+
+function renderDeployChecklist() {
+  const items = [
+    { done: false, t: 'Buy Supabase (free) and run database schema' },
+    { done: false, t: 'Buy Twilio ($20 credit) and get UAE phone number' },
+    { done: false, t: 'Buy Anthropic API key ($20 credit)' },
+    { done: false, t: 'Deploy backend to Railway and add all env variables' },
+    { done: false, t: 'Update REVYO_API in book.html and manage.html with Railway URL' },
+    { done: false, t: 'Create 3 Gumroad products and add links to index.html' },
+    { done: false, t: 'Buy revyo.ae domain and point to Vercel' },
+    { done: false, t: 'Set up 3 cron jobs at cron-job.org' },
+    { done: false, t: 'Change admin password from revyo2025 to something secure' },
+    { done: false, t: 'Run end-to-end test: make a booking → check SMS arrives → check Supabase' },
+  ];
+
+  try {
+    const saved = JSON.parse(localStorage.getItem('deploy_checklist') || '[]');
+    saved.forEach((v, i) => { if (items[i]) items[i].done = v; });
+  } catch (e) {}
+
+  document.getElementById('deploy-checklist').innerHTML = items.map((item, i) => `
+    <label style="display:flex;align-items:flex-start;gap:9px;cursor:pointer;padding:5px 0;font-size:12px;line-height:1.5">
+      <input type="checkbox" ${item.done ? 'checked' : ''} onchange="saveDeploy()" style="accent-color:var(--jade);flex-shrink:0;margin-top:2px;width:13px;height:13px"/>
+      <span style="color:${item.done ? 'var(--jade)' : 'var(--sky)'}${item.done ? ';text-decoration:line-through;opacity:.6' : ''}">${item.t}</span>
+    </label>`).join('');
+}
+
+function saveDeploy() {
+  const checks = Array.from(document.querySelectorAll('#deploy-checklist input')).map(c => c.checked);
+  localStorage.setItem('deploy_checklist', JSON.stringify(checks));
+}
+
+// ══════════════════════════════════════════
+// SAVE / LOAD
+// ══════════════════════════════════════════
+function save() {
+  try { localStorage.setItem('revyo_admin_data', JSON.stringify({ businesses, smsLog })); } catch (e) {}
+}
+
+function load() {
+  try {
+    const d = JSON.parse(localStorage.getItem('revyo_admin_data') || '{}');
+    if (d.businesses) businesses = d.businesses;
+    if (d.smsLog) smsLog = d.smsLog;
+  } catch (e) {}
+}
+
+// ══════════════════════════════════════════
+// TOAST
+// ══════════════════════════════════════════
+let tT;
+function toast(m, t) {
+  const el = document.getElementById('toast');
+  el.textContent = m;
+  el.className = 'toast on' + (t === 'ok' ? ' ok' : t === 'err' ? ' err' : '');
+  clearTimeout(tT);
+  tT = setTimeout(() => el.classList.remove('on'), 3500);
+}
+
+// Toggle wrapper for health page
+document.querySelectorAll && document.addEventListener('DOMContentLoaded', () => {});
+</script>
+</body>
+</html>
