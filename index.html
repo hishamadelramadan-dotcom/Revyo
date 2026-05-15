@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="description" content="Revyo turns UAE salons, clinics & restaurants into automated revenue machines. Bookings, AI automation, lost client recovery. Join 50+ businesses. Start today."/>
+<meta name="theme-color" content="#ff3d1f"/>
+<title>Revyo — Stop Losing AED. Start Automating. UAE's #1 Business OS.</title>
+<link rel="canonical" href="https://revyo.ae"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://revyo.ae"/>
+<meta property="og:title" content="Revyo — UAE businesses recover AED 6,000+ per month on autopilot"/>
+<meta property="og:description" content="Bookings, reminders, lost client recovery, AI automation. 50+ UAE businesses. No commission. Cancel anytime."/>
+<meta property="og:locale" content="en_AE"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Revyo","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":[{"@type":"Offer","price":"59","priceCurrency":"USD","name":"Starter"},{"@type":"Offer","price":"119","priceCurrency":"USD","name":"Growth"},{"@type":"Offer","price":"199","priceCurrency":"USD","name":"Pro"}],"description":"Complete business OS for UAE service businesses","url":"https://revyo.ae","areaServed":"AE"}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800;12..96,900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07080f;--bg2:#0c0f1a;--bg3:#111420;--bg4:#181c2c;
+  --fire:#ff3d1f;--fire2:#ff5c3d;--fire3:rgba(255,61,31,.12);--fire4:rgba(255,61,31,.06);
+  --jade:#00d97e;--jade2:rgba(0,217,126,.1);--jade3:rgba(0,217,126,.06);
+  --gold:#ffb800;--gold2:rgba(255,184,0,.08);
+  --blue:#4d9fff;--blue2:rgba(77,159,255,.1);--blue3:rgba(77,159,255,.06);
+  --sky:#c8d4f0;--ash:#8896b8;--ash2:#5a6880;--ash3:#384055;
+  --line:rgba(200,212,240,.07);--line2:rgba(200,212,240,.04);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--sky);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.6;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(var(--line2) 1px,transparent 1px),linear-gradient(90deg,var(--line2) 1px,transparent 1px);background-size:80px 80px;pointer-events:none;z-index:0}
+
+/* ANNOUNCE */
+.announce{background:linear-gradient(90deg,var(--fire),#ff6b35,var(--fire));padding:10px 20px;text-align:center;font-size:13px;font-weight:600;color:white;position:relative;z-index:10}
+.announce a{color:white;text-decoration:underline;margin-left:8px;cursor:pointer}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:900;background:rgba(7,8,15,.92);backdrop-filter:blur(24px);border-bottom:1px solid var(--line);padding:0 32px;height:58px;display:flex;align-items:center}
+.nav-inner{max-width:1200px;margin:0 auto;width:100%;display:flex;align-items:center;gap:28px}
+.nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none;flex-shrink:0}
+.nav-mark{width:30px;height:30px;background:var(--fire);border-radius:7px;display:grid;place-items:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:900;font-size:13px;color:white}
+.nav-name{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:18px;color:white;letter-spacing:-.04em}
+.nav-name em{color:var(--fire);font-style:normal}
+.nav-links{display:flex;gap:2px;flex:1}
+.nav-link{padding:7px 13px;font-size:13px;font-weight:500;color:var(--ash);cursor:pointer;border-radius:7px;transition:all .2s;text-decoration:none;background:none;border:none;font-family:inherit}
+.nav-link:hover{color:white;background:rgba(200,212,240,.05)}
+.nav-right{display:flex;align-items:center;gap:10px;margin-left:auto}
+.nav-login{padding:8px 16px;background:transparent;color:var(--sky);border:1px solid var(--ash3);border-radius:8px;font-size:13px;font-weight:600;text-decoration:none;transition:all .2s}
+.nav-login:hover{border-color:var(--fire);color:var(--fire)}
+.nav-cta{padding:9px 20px;background:var(--fire);color:white;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .2s;white-space:nowrap}
+.nav-cta:hover{background:var(--fire2);transform:translateY(-1px);box-shadow:0 6px 20px rgba(255,61,31,.3)}
+
+/* LAYOUT */
+.wrap{max-width:1200px;margin:0 auto;padding:0 32px;position:relative;z-index:2}
+.section{padding:96px 0;position:relative}
+.ey{font-size:11px;font-weight:700;color:var(--fire);text-transform:uppercase;letter-spacing:.12em;margin-bottom:10px}
+.sh{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(30px,4vw,52px);font-weight:900;color:white;letter-spacing:-.04em;line-height:1.05;margin-bottom:14px}
+.sh em{color:var(--fire);font-style:normal}
+.ss{font-size:17px;color:var(--ash);max-width:560px;line-height:1.7;margin-bottom:48px}
+
+/* HERO */
+.hero{min-height:calc(100vh - 96px);display:flex;align-items:center;padding:60px 0 40px;overflow:hidden;position:relative}
+.hero::after{content:'';position:absolute;top:-10%;left:40%;width:800px;height:800px;background:radial-gradient(circle,rgba(255,61,31,.1),transparent 65%);pointer-events:none;z-index:0}
+.hero-content{position:relative;z-index:2}
+.hero-live{display:inline-flex;align-items:center;gap:8px;background:var(--jade3);border:1px solid rgba(0,217,126,.2);border-radius:100px;padding:6px 14px;font-size:12px;font-weight:700;color:var(--jade);margin-bottom:22px}
+.hero-live-dot{width:6px;height:6px;border-radius:50%;background:var(--jade);animation:pulse 2s infinite}
+.hero-h{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(40px,6.5vw,88px);font-weight:900;color:white;letter-spacing:-.05em;line-height:.97;margin-bottom:22px}
+.hero-h em{color:var(--fire);font-style:normal;display:block}
+.hero-h span{color:var(--gold)}
+.hero-sub{font-size:19px;color:var(--ash);max-width:580px;line-height:1.65;margin-bottom:32px}
+.hero-sub strong{color:var(--sky)}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:36px}
+.btn-p{padding:16px 32px;background:var(--fire);color:white;border:none;border-radius:10px;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .25s;display:inline-flex;align-items:center;gap:8px;text-decoration:none}
+.btn-p:hover{background:var(--fire2);transform:translateY(-2px);box-shadow:0 14px 36px rgba(255,61,31,.35)}
+.btn-s{padding:16px 24px;background:rgba(200,212,240,.06);color:var(--sky);border:1px solid var(--ash3);border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn-s:hover{border-color:var(--fire);color:var(--fire)}
+.hero-trust{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.ti{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--ash)}
+.ti-check{color:var(--jade)}
+
+/* TICKER */
+.ticker{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 0;overflow:hidden;position:relative;z-index:2}
+.ticker-track{display:flex;gap:0;white-space:nowrap;animation:tick 38s linear infinite}
+.ticker-item{display:inline-flex;align-items:center;gap:10px;padding:0 30px;font-size:13px;color:var(--ash);flex-shrink:0}
+.ticker-item strong{color:var(--jade)}
+.ticker-sep{width:4px;height:4px;border-radius:50%;background:var(--ash3)}
+@keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* STATS */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-bottom:72px}
+.stat-b{background:var(--bg2);padding:24px 28px;transition:background .2s}
+.stat-b:hover{background:var(--bg3)}
+.stat-n{font-family:'Bricolage Grotesque',sans-serif;font-size:42px;font-weight:900;color:white;letter-spacing:-.05em;line-height:1;margin-bottom:5px}
+.stat-n em{color:var(--fire);font-style:normal}
+.stat-d{font-size:13px;color:var(--ash);line-height:1.5}
+
+/* HOW IT WORKS */
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.how-card{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:28px;position:relative;overflow:hidden;transition:all .3s}
+.how-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .3s;background:linear-gradient(135deg,var(--fire4),transparent)}
+.how-card:hover{transform:translateY(-4px);box-shadow:0 20px 48px rgba(0,0,0,.3)}
+.how-card:hover::before{opacity:1}
+.how-num{font-size:11px;font-weight:700;color:var(--fire);text-transform:uppercase;letter-spacing:.12em;margin-bottom:14px}
+.how-ico{font-size:36px;margin-bottom:14px;display:block}
+.how-t{font-family:'Bricolage Grotesque',sans-serif;font-size:20px;font-weight:800;color:white;letter-spacing:-.03em;margin-bottom:8px}
+.how-d{font-size:14px;color:var(--ash);line-height:1.7}
+.how-res{display:inline-flex;align-items:center;gap:6px;background:var(--jade3);border:1px solid rgba(0,217,126,.15);border-radius:100px;padding:4px 12px;font-size:12px;font-weight:700;color:var(--jade);margin-top:12px}
+
+/* DEMO */
+.demo-wrap{background:var(--bg2);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.demo-head{background:var(--bg3);border-bottom:1px solid var(--line);padding:13px 18px;display:flex;align-items:center;gap:10px}
+.d-dots{display:flex;gap:5px}.d-dot{width:10px;height:10px;border-radius:50%}
+.demo-niche-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px;overflow-x:auto;padding-bottom:4px}
+.demo-niche-tabs::-webkit-scrollbar{display:none}
+.dnt{padding:8px 16px;border-radius:100px;border:1px solid var(--line);background:transparent;font-size:12px;font-weight:600;color:var(--ash);cursor:pointer;font-family:inherit;transition:all .2s;white-space:nowrap}
+.dnt.on{background:var(--fire);border-color:var(--fire);color:white}
+.view-tog{display:flex;gap:4px;background:var(--bg3);border:1px solid var(--line);border-radius:10px;padding:4px;width:fit-content;margin-bottom:22px}
+.vt{padding:8px 18px;border-radius:7px;border:none;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s;color:var(--ash);background:transparent}
+.vt.on{background:var(--fire);color:white}
+.demo-stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line)}
+.ds{background:var(--bg2);padding:12px 15px}
+.ds-v{font-family:'Bricolage Grotesque',sans-serif;font-size:20px;font-weight:900;color:white;margin-bottom:2px}
+.ds-l{font-size:10px;color:var(--ash3);text-transform:uppercase;letter-spacing:.06em}
+.demo-panels-row{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line)}
+.demo-panel{background:var(--bg2);padding:15px}
+.demo-ph{font-size:11px;font-weight:700;color:white;margin-bottom:9px;text-transform:uppercase;letter-spacing:.07em}
+.demo-bk-item{display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:var(--bg4);border-radius:8px;margin-bottom:5px;font-size:12px}
+.demo-ai-row{background:var(--bg3);border-top:1px solid var(--line);padding:12px 16px;display:flex;gap:10px;align-items:center}
+.phone-wrap{background:var(--bg2);border:1px solid var(--line);border-radius:18px;overflow:hidden;max-width:280px;width:100%}
+.phone-bar{background:var(--bg3);border-bottom:1px solid var(--line);padding:9px 12px;display:flex;align-items:center;gap:7px}
+.p-dots{display:flex;gap:4px}.p-dot{width:8px;height:8px;border-radius:50%}
+.p-url{flex:1;background:var(--bg4);border-radius:4px;padding:3px 7px;font-size:10px;color:var(--ash3);text-align:center}
+.p-body{padding:13px}
+.svc-demo{display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:var(--bg4);border:1.5px solid var(--line);border-radius:8px;margin-bottom:5px;cursor:pointer;transition:all .2s}
+.svc-demo:hover,.svc-demo.on{border-color:var(--fire);background:var(--fire3)}
+
+/* PILLARS */
+.pillars-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pillar{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:28px;position:relative;overflow:hidden;transition:all .3s}
+.pillar:hover{transform:translateY(-4px)}
+.pillar::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .3s;pointer-events:none}
+.p1::before{background:linear-gradient(135deg,rgba(255,61,31,.06),transparent)}
+.p2::before{background:linear-gradient(135deg,rgba(77,159,255,.06),transparent)}
+.p3::before{background:linear-gradient(135deg,rgba(0,217,126,.06),transparent)}
+.pillar:hover::before{opacity:1}
+.pillar-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;margin-bottom:14px}
+.p1 .pillar-tag{color:var(--fire)}.p2 .pillar-tag{color:var(--blue)}.p3 .pillar-tag{color:var(--jade)}
+.pillar-ico{font-size:32px;margin-bottom:14px}
+.pillar-h{font-family:'Bricolage Grotesque',sans-serif;font-size:20px;font-weight:800;color:white;letter-spacing:-.03em;margin-bottom:8px}
+.pillar-s{font-size:14px;color:var(--ash);line-height:1.7;margin-bottom:16px}
+.pf{display:flex;gap:8px;font-size:13px;color:var(--ash);margin-bottom:7px;align-items:flex-start}
+.pf-d{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:7px}
+.p1 .pf-d{background:var(--fire)}.p2 .pf-d{background:var(--blue)}.p3 .pf-d{background:var(--jade)}
+
+/* COMPARISON TABLE */
+.comp-scroll{overflow-x:auto}
+.comp-tbl{width:100%;border-collapse:collapse;min-width:680px}
+.comp-tbl th{padding:12px 16px;text-align:left;font-size:11px;font-weight:700;color:var(--ash);text-transform:uppercase;letter-spacing:.07em;border-bottom:1px solid var(--line);background:var(--bg2)}
+.comp-tbl th.rc{background:var(--fire3);color:var(--fire);border-bottom-color:rgba(255,61,31,.2)}
+.comp-tbl td{padding:12px 16px;font-size:13px;color:var(--sky);border-bottom:1px solid var(--line2)}
+.comp-tbl td.rc{background:var(--fire4);font-weight:600;color:white}
+.comp-tbl tr:last-child td{border-bottom:none}
+.ck{color:var(--jade);font-size:16px}.cx{color:var(--ash3);font-size:16px}.cp{color:var(--gold);font-size:16px}
+.rv-badge{background:var(--fire);color:white;padding:1px 7px;border-radius:3px;font-size:10px;font-weight:700;margin-left:5px;vertical-align:middle}
+
+/* PRICING */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.price-card{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:28px;position:relative;transition:all .3s}
+.price-card:hover{transform:translateY(-3px)}
+.price-card.feat{border-color:rgba(0,217,126,.3);background:linear-gradient(135deg,rgba(0,217,126,.04),var(--bg2))}
+.price-pop{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--jade);color:var(--bg);font-size:11px;font-weight:700;padding:3px 14px;border-radius:100px;white-space:nowrap}
+.price-plan{font-size:12px;font-weight:700;color:var(--ash);text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px}
+.price-amt{font-family:'Bricolage Grotesque',sans-serif;font-size:52px;font-weight:900;color:white;letter-spacing:-.05em;line-height:1;margin-bottom:3px}
+.price-amt span{font-size:16px;color:var(--ash);font-weight:400;font-family:'DM Sans',sans-serif}
+.price-aed{font-size:13px;color:var(--ash);margin-bottom:6px}
+.price-desc{font-size:13px;color:var(--ash);margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid var(--line);line-height:1.55}
+.pfl{display:flex;flex-direction:column;gap:9px;margin-bottom:24px}
+.pfi{display:flex;gap:9px;font-size:13px;color:var(--sky);align-items:flex-start}
+.pfy{color:var(--jade);flex-shrink:0}.pfn{color:var(--ash3);flex-shrink:0}
+.price-btn{width:100%;padding:14px;background:var(--fire);color:white;border:none;border-radius:9px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .2s}
+.price-btn:hover{background:var(--fire2)}
+.price-btn.out{background:transparent;border:1px solid var(--line);color:var(--sky)}
+.price-btn.out:hover{border-color:var(--fire);color:var(--fire)}
+.price-margin{font-size:11px;color:var(--ash3);text-align:center;margin-top:9px}
+
+/* ROI */
+.roi-box{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:32px;max-width:820px;margin:0 auto}
+.roi-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+.roi-lbl{font-size:11px;font-weight:700;color:var(--ash);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.roi-slider{width:100%;accent-color:var(--fire);margin-bottom:4px}
+.roi-val{font-family:'Bricolage Grotesque',sans-serif;font-size:18px;font-weight:800;color:white;margin-bottom:14px}
+.roi-result{background:var(--bg3);border-radius:12px;padding:20px}
+.roi-rl{font-size:12px;color:var(--ash);margin-bottom:4px}
+.roi-rn{font-family:'Bricolage Grotesque',sans-serif;font-size:30px;font-weight:900;letter-spacing:-.04em;margin-bottom:12px}
+
+/* TESTIMONIALS */
+.proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.proof-card{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:22px;transition:all .3s}
+.proof-card:hover{border-color:rgba(255,61,31,.2);transform:translateY(-2px)}
+.proof-stars{color:var(--gold);font-size:14px;margin-bottom:12px;letter-spacing:2px}
+.proof-text{font-size:14px;color:var(--sky);line-height:1.75;margin-bottom:16px;font-style:italic}
+.proof-author{display:flex;align-items:center;gap:10px}
+.proof-av{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:14px;color:white;flex-shrink:0}
+
+/* FAQ */
+.faq-item{border-bottom:1px solid var(--line);padding:20px 0;cursor:pointer}
+.faq-q{font-size:16px;font-weight:600;color:white;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.faq-ico{font-size:20px;color:var(--fire);flex-shrink:0;transition:transform .3s}
+.faq-ico.open{transform:rotate(45deg)}
+.faq-a{font-size:14px;color:var(--ash);line-height:1.75;padding-top:12px;display:none}
+.faq-a.open{display:block}
+
+/* FINAL CTA */
+.final-cta{background:linear-gradient(135deg,rgba(255,61,31,.08),rgba(255,61,31,.02));border:1px solid rgba(255,61,31,.15);border-radius:24px;padding:72px 48px;text-align:center;margin:0 32px;position:relative;overflow:hidden}
+.final-cta::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(circle,rgba(255,61,31,.12),transparent 65%);pointer-events:none}
+
+/* FOOTER */
+footer{border-top:1px solid var(--line);padding:40px 32px;position:relative;z-index:2}
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+.footer-links{display:flex;gap:16px;flex-wrap:wrap}
+.fl{font-size:13px;color:var(--ash);cursor:pointer;text-decoration:none;transition:color .2s;background:none;border:none;font-family:inherit}
+.fl:hover{color:var(--fire)}
+
+/* MODAL */
+.modal-bg{display:none;position:fixed;inset:0;z-index:1000;background:rgba(7,8,15,.97);backdrop-filter:blur(20px);align-items:center;justify-content:center;padding:20px}
+.modal-bg.on{display:flex}
+.modal{background:var(--bg2);border:1px solid var(--line);border-radius:20px;padding:36px;width:100%;max-width:480px;max-height:90vh;overflow-y:auto;position:relative}
+.modal-x{position:absolute;top:16px;right:16px;background:var(--bg3);border:1px solid var(--line);border-radius:50%;width:30px;height:30px;display:grid;place-items:center;cursor:pointer;font-size:14px;color:var(--ash);transition:all .2s}
+.modal-x:hover{color:var(--fire)}
+.fi{margin-bottom:12px}
+.fi label{display:block;font-size:11px;font-weight:700;color:var(--ash);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}
+.fi input,.fi select{width:100%;background:var(--bg3);border:1px solid var(--line);border-radius:8px;color:var(--sky);padding:11px 14px;font-size:14px;font-family:inherit;outline:none;transition:border-color .2s}
+.fi input:focus,.fi select:focus{border-color:var(--fire)}
+.fi select option{background:var(--bg3)}
+.fi-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.plan-select{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
+.plan-opt{background:var(--bg3);border:1.5px solid var(--line);border-radius:9px;padding:11px;text-align:center;cursor:pointer;transition:all .2s}
+.plan-opt:hover,.plan-opt.on{border-color:var(--fire);background:var(--fire3)}
+.plan-opt-n{font-size:12px;font-weight:700;color:white;margin-bottom:3px}
+.plan-opt-p{font-family:'Bricolage Grotesque',sans-serif;font-size:18px;font-weight:900;color:var(--fire)}
+.plan-opt-s{font-size:10px;color:var(--ash)}
+.tc-row{display:flex;align-items:flex-start;gap:9px;margin-bottom:14px;font-size:12px;color:var(--ash);line-height:1.5}
+.tc-row input{accent-color:var(--fire);flex-shrink:0;margin-top:2px}
+.modal-btn{width:100%;padding:14px;background:var(--fire);color:white;border:none;border-radius:9px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .2s}
+.modal-btn:hover{background:var(--fire2)}
+.modal-success{text-align:center;padding:20px 0;display:none}
+
+/* STICKY MOBILE CTA */
+.sticky-mob{display:none;position:fixed;bottom:0;left:0;right:0;z-index:800;background:rgba(7,8,15,.97);border-top:1px solid var(--line);padding:12px 16px;backdrop-filter:blur(16px)}
+.sticky-mob-inner{display:flex;gap:10px;align-items:center}
+.sticky-mob-text{flex:1;font-size:13px;color:var(--ash)}
+.sticky-mob-text strong{color:white;display:block;font-size:14px}
+.sticky-mob-btn{padding:12px 20px;background:var(--fire);color:white;border:none;border-radius:9px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap}
+
+/* TC */
+#tc-page{display:none;position:fixed;inset:0;z-index:1100;background:var(--bg);overflow-y:auto;padding:40px 32px}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.reveal.vis{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .nav{padding:0 16px}.nav-links{display:none}
+  .wrap{padding:0 16px}.section{padding:64px 0}
+  .hero{padding:48px 0 32px;min-height:auto}
+  .hero-h{font-size:clamp(36px,10vw,56px)}
+  .hero-sub{font-size:16px}
+  .hero-btns{flex-direction:column}
+  .btn-p,.btn-s{width:100%;justify-content:center}
+  .stats-row{grid-template-columns:1fr 1fr}
+  .how-grid{grid-template-columns:1fr}
+  .demo-panels-row{grid-template-columns:1fr}
+  .demo-stats-row{grid-template-columns:1fr 1fr}
+  .pillars-grid,.pricing-grid,.proof-grid{grid-template-columns:1fr}
+  .roi-grid,.fi-row{grid-template-columns:1fr}
+  .final-cta{margin:0 16px;padding:44px 24px}
+  footer{padding:28px 16px}
+  .footer-inner{flex-direction:column;gap:16px;text-align:center}
+  .sticky-mob{display:block}
+  .plan-select{grid-template-columns:1fr}
+  #demo-client-grid{grid-template-columns:1fr!important}
+}
+@media(max-width:600px){
+  .stats-row{grid-template-columns:1fr}
+  .hero-h{font-size:clamp(32px,11vw,48px)}
+  .announce{font-size:11px}
+  .demo-niche-tabs{flex-wrap:nowrap}
+}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--ash3);border-radius:100px}
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCE BAR -->
+<div class="announce">
+  🔥 <strong>50+ UAE businesses</strong> joined Revyo this month — AED 6,000+ recovered on autopilot
+  <a onclick="scrollTo('pricing')">See plans →</a>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="/">
+      <div class="nav-mark">R</div>
+      <div class="nav-name">Rev<em>yo</em></div>
+    </a>
+    <div class="nav-links">
+      <button class="nav-link" onclick="scrollTo('how')">How it works</button>
+      <button class="nav-link" onclick="scrollTo('features')">Features</button>
+      <button class="nav-link" onclick="scrollTo('demo')">Demo</button>
+      <button class="nav-link" onclick="scrollTo('pricing')">Pricing</button>
+      <button class="nav-link" onclick="scrollTo('faq')">FAQ</button>
+    </div>
+    <div class="nav-right">
+      <a class="nav-login" href="/dashboard">Log in</a>
+      <button class="nav-cta" onclick="openModal()">Start today →</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-content">
+      <div class="hero-live"><div class="hero-live-dot"></div>50+ UAE businesses active now</div>
+      <h1 class="hero-h">
+        Your business<br>
+        <em>loses AED daily.</em><br>
+        <span>We stop that.</span>
+      </h1>
+      <p class="hero-sub">
+        <strong>Revyo automates bookings, SMS reminders, lost client recovery, and AI marketing</strong> — so your UAE salon, clinic, or restaurant recovers AED 6,000+ per month without lifting a finger.
+      </p>
+      <div class="hero-btns">
+        <button class="btn-p" onclick="openModal()">Start today — from $59/mo →</button>
+        <a class="btn-s" href="/dashboard">▶ See live dashboard</a>
+      </div>
+      <div class="hero-trust">
+        <div class="ti"><span class="ti-check">✓</span>No commission on bookings</div>
+        <div class="ti"><span class="ti-check">✓</span>Arabic + English</div>
+        <div class="ti"><span class="ti-check">✓</span>Setup in 10 minutes</div>
+        <div class="ti"><span class="ti-check">✓</span>Cancel anytime</div>
+        <div class="ti"><span class="ti-check">✓</span>Zero technical skills needed</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track" id="ticker"></div>
+</div>
+
+<!-- STATS -->
+<div class="wrap" style="position:relative;z-index:2;margin-top:60px">
+  <div class="stats-row reveal">
+    <div class="stat-b"><div class="stat-n"><em>72%</em></div><div class="stat-d">Average drop in no-shows after first month on Revyo</div></div>
+    <div class="stat-b"><div class="stat-n">AED <em>6K</em></div><div class="stat-d">Average monthly revenue recovered per client business</div></div>
+    <div class="stat-b"><div class="stat-n"><em>15h</em></div><div class="stat-d">Hours saved every week from AI automation tools</div></div>
+    <div class="stat-b"><div class="stat-n"><em>3x</em></div><div class="stat-d">More bookings from lost client reactivation campaigns</div></div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="how">
+  <div class="wrap">
+    <div class="ey">How it works</div>
+    <h2 class="sh reveal">Three steps.<br><em>Fully automated.</em></h2>
+    <p class="ss reveal">Set it up once in 10 minutes. Then Revyo runs 24/7 and sends you revenue while you focus on your clients.</p>
+    <div class="how-grid">
+      <div class="how-card reveal">
+        <div class="how-num">Step 01</div>
+        <span class="how-ico">⚡</span>
+        <div class="how-t">Connect in 10 minutes</div>
+        <p class="how-d">Sign up, tell us your business type, add your services and pricing. Your branded booking page and automated SMS system go live immediately. No tech skills required.</p>
+        <div class="how-res">✓ Live in under 10 minutes</div>
+      </div>
+      <div class="how-card reveal">
+        <div class="how-num">Step 02</div>
+        <span class="how-ico">🤖</span>
+        <div class="how-t">Revyo runs automatically</div>
+        <p class="how-d">Confirmations fire. Reminders go out 24h, 2h, 30min before. Lapsed clients get personalised messages every 45 days. AI writes your Instagram posts weekly. All zero effort.</p>
+        <div class="how-res">✓ Zero daily effort from you</div>
+      </div>
+      <div class="how-card reveal">
+        <div class="how-num">Step 03</div>
+        <span class="how-ico">💰</span>
+        <div class="how-t">Watch the AED come back</div>
+        <p class="how-d">Every Monday, Revyo sends you a report showing exactly how much revenue was recovered that week. Your dashboard shows every AED saved from no-shows and recovered from lapsed clients.</p>
+        <div class="how-res">✓ AED 6,000+ avg recovered/month</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE DEMO -->
+<section class="section" id="demo" style="padding-top:0">
+  <div class="wrap">
+    <div class="ey">Live product demo</div>
+    <h2 class="sh reveal">This is the real product.<br><em>Not a mockup.</em></h2>
+    <p class="ss reveal">See what you as the business owner see — and what your clients experience. Switch niches below.</p>
+
+    <div class="demo-niche-tabs reveal" id="demo-tabs">
+      <button class="dnt on" onclick="switchNiche('salon',this)">💇 Salon</button>
+      <button class="dnt" onclick="switchNiche('clinic',this)">🏥 Clinic</button>
+      <button class="dnt" onclick="switchNiche('restaurant',this)">🍽️ Restaurant</button>
+      <button class="dnt" onclick="switchNiche('barber',this)">✂️ Barbershop</button>
+      <button class="dnt" onclick="switchNiche('dental',this)">🦷 Dental</button>
+      <button class="dnt" onclick="switchNiche('gym',this)">💪 Gym</button>
+    </div>
+
+    <div class="view-tog reveal">
+      <button class="vt on" id="vt-owner" onclick="switchView('owner')">📊 Business Owner View</button>
+      <button class="vt" id="vt-client" onclick="switchView('client')">📱 Client Booking View</button>
+    </div>
+
+    <!-- OWNER VIEW -->
+    <div id="dv-owner" class="reveal">
+      <div class="demo-wrap">
+        <div class="demo-head">
+          <div class="d-dots"><div class="d-dot" style="background:#ff5f57"></div><div class="d-dot" style="background:#febc2e"></div><div class="d-dot" style="background:#28c840"></div></div>
+          <div style="font-size:13px;font-weight:700;color:white;margin-left:7px">Revyo Dashboard</div>
+          <div style="margin-left:auto;font-size:11px;color:var(--jade);font-weight:700;display:flex;align-items:center;gap:5px"><span style="width:5px;height:5px;border-radius:50%;background:var(--jade);animation:pulse 2s infinite;display:inline-block"></span><span id="d-biz">Glow Beauty Dubai</span></div>
+        </div>
+        <div class="demo-stats-row" id="d-stats"></div>
+        <div class="demo-panels-row">
+          <div class="demo-panel"><div class="demo-ph">Recent bookings</div><div id="d-bks"></div></div>
+          <div class="demo-panel">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:9px">
+              <div class="demo-ph" style="margin:0">Lost clients — re-engage now</div>
+              <span style="font-size:10px;background:var(--gold2);color:var(--gold);padding:2px 7px;border-radius:4px;font-weight:700">Revenue opportunity</span>
+            </div>
+            <div id="d-lost"></div>
+            <button id="d-send" onclick="simSend()" style="width:100%;margin-top:9px;padding:9px;background:var(--fire3);border:1px solid rgba(255,61,31,.2);border-radius:8px;font-size:12px;font-weight:700;color:var(--fire);cursor:pointer;font-family:inherit;transition:all .2s">📤 Send reactivation campaign →</button>
+          </div>
+        </div>
+        <div class="demo-ai-row">
+          <div style="width:26px;height:26px;background:var(--blue2);border-radius:6px;display:grid;place-items:center;font-size:12px;flex-shrink:0">🤖</div>
+          <div style="font-size:12px;color:var(--ash);line-height:1.5" id="d-ai">AI drafted 3 Instagram posts · Replied to Sara's 5★ Google review · Birthday offer sent to Ahmed</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CLIENT VIEW -->
+    <div id="dv-client" style="display:none" class="reveal">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start" id="demo-client-grid">
+        <div style="display:flex;justify-content:center">
+          <div class="phone-wrap">
+            <div class="phone-bar">
+              <div class="p-dots"><div class="p-dot" style="background:#ff5f57"></div><div class="p-dot" style="background:#febc2e"></div><div class="p-dot" style="background:#28c840"></div></div>
+              <div class="p-url" id="c-url">revyo.ae/book/glow-beauty</div>
+            </div>
+            <div class="p-body">
+              <div style="display:flex;align-items:center;gap:9px;margin-bottom:12px;padding-bottom:11px;border-bottom:1px solid var(--line)">
+                <div style="width:34px;height:34px;border-radius:8px;display:grid;place-items:center;font-size:13px;font-weight:900;color:white;flex-shrink:0" id="c-av">G</div>
+                <div><div style="font-size:12px;font-weight:700;color:white" id="c-biz">Glow Beauty Dubai</div><div style="font-size:10px;color:var(--jade);font-weight:600;margin-top:1px">✓ Accepting bookings</div></div>
+              </div>
+              <div style="font-size:10px;font-weight:700;color:var(--ash3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px">Choose a service</div>
+              <div id="c-svcs" style="margin-bottom:8px"></div>
+              <div id="c-sel" style="display:none;background:var(--fire3);border:1px solid rgba(255,61,31,.2);border-radius:7px;padding:8px;margin-bottom:7px">
+                <div style="font-size:10px;color:var(--fire);font-weight:700;margin-bottom:2px">✓ Selected</div>
+                <div style="font-size:11px;font-weight:700;color:white" id="c-sel-n">Full Highlights</div>
+              </div>
+              <div id="c-times" style="display:none">
+                <div style="font-size:10px;font-weight:700;color:var(--ash3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px">Available today</div>
+                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-bottom:7px" id="c-slots"></div>
+              </div>
+              <div id="c-form" style="display:none">
+                <input placeholder="Your name" style="width:100%;background:var(--bg3);border:1px solid var(--line);border-radius:6px;color:var(--sky);padding:7px 10px;font-size:11px;font-family:inherit;outline:none;margin-bottom:5px"/>
+                <input placeholder="+971 50 000 0000" style="width:100%;background:var(--bg3);border:1px solid var(--line);border-radius:6px;color:var(--sky);padding:7px 10px;font-size:11px;font-family:inherit;outline:none;margin-bottom:6px"/>
+                <div id="c-dep" style="background:var(--gold2);border:1px solid rgba(255,184,0,.2);border-radius:5px;padding:6px 8px;font-size:10px;color:var(--gold);margin-bottom:6px">🔒 AED 100 deposit to confirm slot</div>
+                <button onclick="simBook()" style="width:100%;padding:10px;background:var(--fire);color:white;border:none;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit">Confirm booking →</button>
+              </div>
+              <div id="c-done" style="display:none;text-align:center;padding:10px 0">
+                <div style="font-size:28px;margin-bottom:6px">✅</div>
+                <div style="font-size:12px;font-weight:700;color:white;margin-bottom:4px">Booking confirmed!</div>
+                <div style="font-size:10px;color:var(--ash);line-height:1.6">SMS sent. Auto-reminders fire 24h &amp; 2h before.</div>
+                <div style="font-size:10px;color:var(--ash3);margin-top:6px;background:var(--bg3);border-radius:5px;padding:5px">Powered by <strong style="color:var(--fire)">Revyo</strong></div>
+                <button onclick="resetBook()" style="margin-top:7px;padding:5px 12px;background:var(--bg3);border:1px solid var(--line);border-radius:5px;font-size:10px;color:var(--sky);cursor:pointer;font-family:inherit">← Book again</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:900;color:white;letter-spacing:-.03em;margin-bottom:8px;line-height:1.2" id="c-info-t">What your clients see when they book</div>
+          <div style="font-size:14px;color:var(--ash);margin-bottom:18px;line-height:1.65" id="c-info-s">Branded booking page — service, date, time, deposit. SMS confirmation fires automatically.</div>
+          <div id="c-feats" style="display:flex;flex-direction:column;gap:9px"></div>
+          <div style="margin-top:18px;background:var(--bg3);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:12px;color:var(--ash);line-height:1.65">
+            💡 Every booking confirmation shows <strong style="color:var(--fire)">"Powered by Revyo"</strong> — bringing you more business owners organically.
+          </div>
+          <button class="btn-p" style="margin-top:18px" onclick="openModal()">Get this for my business →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section class="section" id="features" style="padding-top:0">
+  <div class="wrap">
+    <div class="ey">Three pillars. One platform.</div>
+    <h2 class="sh reveal">Everything to grow<br><em>automatically.</em></h2>
+    <p class="ss reveal">Not just a booking tool. A complete business OS that runs itself — recovery, automation, and intelligence.</p>
+    <div class="pillars-grid">
+      <div class="pillar p1 reveal">
+        <div class="pillar-tag">Pillar 1 — Revenue Recovery</div>
+        <div class="pillar-ico">📅</div>
+        <div class="pillar-h">Stop losing AED daily</div>
+        <p class="pillar-s">Every no-show, unconverted enquiry, and lapsed client is money leaving your business. Revyo catches it all automatically.</p>
+        <div class="pf"><div class="pf-d"></div><span>Smart booking page with no-show deposit protection</span></div>
+        <div class="pf"><div class="pf-d"></div><span>Auto SMS reminders — 24h, 2h, 30min before every appointment</span></div>
+        <div class="pf"><div class="pf-d"></div><span>Dead client reactivation — auto-reaches lapsed clients every 45 days</span></div>
+        <div class="pf"><div class="pf-d"></div><span>Lost client campaign builder with promo codes and discounts</span></div>
+        <div class="pf"><div class="pf-d"></div><span>Revenue dashboard showing exact AED recovered</span></div>
+      </div>
+      <div class="pillar p2 reveal">
+        <div class="pillar-tag">Pillar 2 — AI Automation</div>
+        <div class="pillar-ico">🤖</div>
+        <div class="pillar-h">Save 15 hrs/week</div>
+        <p class="pillar-s">Social media, Google reviews, lead follow-ups, birthday messages — all handled by AI so you focus on your clients.</p>
+        <div class="pf"><div class="pf-d"></div><span>Social media autopilot — AI writes Instagram posts weekly</span></div>
+        <div class="pf"><div class="pf-d"></div><span>Google review auto-responder — personalised replies instantly</span></div>
+        <div class="pf"><div class="pf-d"></div><span>Lead follow-up — instant reply to every enquiry 24/7</span></div>
+        <div class="pf"><div class="pf-d"></div><span>Birthday engine — personalised offer on every client's birthday</span></div>
+        <div class="pf"><div class="pf-d"></div><span>Weekly business report — every Monday to your phone</span></div>
+      </div>
+      <div class="pillar p3 reveal">
+        <div class="pillar-tag">Pillar 3 — Business Intelligence</div>
+        <div class="pillar-ico">📈</div>
+        <div class="pillar-h">Know what to do next</div>
+        <p class="pillar-s">Revyo analyses your data and tells you specifically what makes you more money this week. No guessing.</p>
+        <div class="pf"><div class="pf-d"></div><span>AI advisor — weekly specific action plan every Monday</span></div>
+        <div class="pf"><div class="pf-d"></div><span>Churn predictor — flags clients about to leave before they do</span></div>
+        <div class="pf"><div class="pf-d"></div><span>VIP client tracker — keeps your top 20% loyal automatically</span></div>
+        <div class="pf"><div class="pf-d"></div><span>Demand forecasting — predicts slow weeks so you can act</span></div>
+        <div class="pf"><div class="pf-d"></div><span>Competitor alerts — notified when nearby rivals get bad reviews</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPETITOR COMPARISON -->
+<section class="section" id="compare" style="padding-top:0">
+  <div class="wrap">
+    <div class="ey">How we compare</div>
+    <h2 class="sh reveal">Why UAE businesses<br><em>choose Revyo.</em></h2>
+    <p class="ss reveal">Other tools do one thing and take a cut. Revyo does everything for a flat fee.</p>
+    <div class="comp-scroll reveal">
+      <table class="comp-tbl">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th class="rc">Revyo <span class="rv-badge">UAE</span></th>
+            <th>Fresha</th>
+            <th>Booksy</th>
+            <th>Generic CRM</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Smart booking + deposits</td><td class="rc"><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="cx">✗</span></td></tr>
+          <tr><td>Automated SMS reminders</td><td class="rc"><span class="ck">✓</span></td><td><span class="cp">△ basic</span></td><td><span class="cp">△ basic</span></td><td><span class="cx">✗</span></td></tr>
+          <tr><td>Lost client reactivation</td><td class="rc"><span class="ck">✓</span></td><td><span class="cx">✗</span></td><td><span class="cx">✗</span></td><td><span class="cx">✗</span></td></tr>
+          <tr><td>AI social media posts</td><td class="rc"><span class="ck">✓</span></td><td><span class="cx">✗</span></td><td><span class="cx">✗</span></td><td><span class="cx">✗</span></td></tr>
+          <tr><td>Google review AI replies</td><td class="rc"><span class="ck">✓</span></td><td><span class="cx">✗</span></td><td><span class="cx">✗</span></td><td><span class="cx">✗</span></td></tr>
+          <tr><td>Birthday engine</td><td class="rc"><span class="ck">✓</span></td><td><span class="cx">✗</span></td><td><span class="cx">✗</span></td><td><span class="cp">△ manual</span></td></tr>
+          <tr><td>AI business advisor</td><td class="rc"><span class="ck">✓</span></td><td><span class="cx">✗</span></td><td><span class="cx">✗</span></td><td><span class="cx">✗</span></td></tr>
+          <tr><td>Arabic + English</td><td class="rc"><span class="ck">✓</span></td><td><span class="cp">△ limited</span></td><td><span class="cx">✗</span></td><td><span class="cx">✗</span></td></tr>
+          <tr><td style="font-weight:600;color:white">Commission on bookings</td><td class="rc" style="color:var(--jade);font-weight:700">Zero — ever</td><td style="color:var(--fire)">20–30% cut</td><td style="color:var(--fire)">25% cut</td><td style="color:var(--jade)">Zero</td></tr>
+          <tr><td style="font-weight:600;color:white">Monthly cost</td><td class="rc" style="color:var(--jade);font-weight:700">From $59 flat</td><td>$0 + 20% cut</td><td>$29–$99</td><td>$50–$300</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section" id="pricing" style="padding-top:0">
+  <div class="wrap">
+    <div class="ey">Pricing</div>
+    <h2 class="sh reveal">Pays for itself<br><em>on day one.</em></h2>
+    <p class="ss reveal">Your first recovered no-show covers the entire month. After that, everything is profit.</p>
+    <div class="pricing-grid">
+      <div class="price-card reveal">
+        <div class="price-plan">Starter</div>
+        <div class="price-amt">$59<span>/mo</span></div>
+        <div class="price-aed">~AED 217/month</div>
+        <div class="price-desc">For solo operators ready to stop no-shows and automate reminders.</div>
+        <div class="pfl">
+          <div class="pfi"><span class="pfy">✓</span>Smart booking page + deposits</div>
+          <div class="pfi"><span class="pfy">✓</span>SMS reminders — 24h, 2h, 30min</div>
+          <div class="pfi"><span class="pfy">✓</span>Lost client list</div>
+          <div class="pfi"><span class="pfy">✓</span>Revenue dashboard</div>
+          <div class="pfi"><span class="pfy">✓</span>Weekly business report</div>
+          <div class="pfi"><span class="pfy">✓</span>Arabic + English</div>
+          <div class="pfi"><span class="pfn">✗</span><span style="color:var(--ash3)">AI automation tools</span></div>
+          <div class="pfi"><span class="pfn">✗</span><span style="color:var(--ash3)">Business intelligence</span></div>
+        </div>
+        <button class="price-btn out" onclick="openModalPlan('starter')">Start with Starter →</button>
+        <div class="price-margin">~75% margin · Costs you ~$15/mo</div>
+      </div>
+      <div class="price-card feat reveal">
+        <div class="price-pop">Most popular</div>
+        <div class="price-plan">Growth</div>
+        <div class="price-amt" style="color:var(--jade)">$119<span style="color:var(--ash)">/mo</span></div>
+        <div class="price-aed">~AED 437/month</div>
+        <div class="price-desc">The complete recovery + automation package for businesses ready to scale.</div>
+        <div class="pfl">
+          <div class="pfi"><span class="pfy">✓</span>Everything in Starter</div>
+          <div class="pfi"><span class="pfy">✓</span>AI reactivation + promo codes</div>
+          <div class="pfi"><span class="pfy">✓</span>Google review auto-responder</div>
+          <div class="pfi"><span class="pfy">✓</span>Birthday &amp; occasion engine</div>
+          <div class="pfi"><span class="pfy">✓</span>Lead follow-up automation</div>
+          <div class="pfi"><span class="pfy">✓</span>Referral programme</div>
+          <div class="pfi"><span class="pfy">✓</span>Churn predictor</div>
+          <div class="pfi"><span class="pfy">✓</span>VIP client tracker</div>
+        </div>
+        <button class="price-btn" onclick="openModalPlan('growth')">Start with Growth →</button>
+        <div class="price-margin">~80% margin · Costs you ~$24/mo</div>
+      </div>
+      <div class="price-card reveal">
+        <div class="price-plan">Pro</div>
+        <div class="price-amt">$199<span>/mo</span></div>
+        <div class="price-aed">~AED 731/month</div>
+        <div class="price-desc">Full AI business OS with social media autopilot and complete intelligence suite.</div>
+        <div class="pfl">
+          <div class="pfi"><span class="pfy">✓</span>Everything in Growth</div>
+          <div class="pfi"><span class="pfy">✓</span>Social media autopilot</div>
+          <div class="pfi"><span class="pfy">✓</span>AI business advisor</div>
+          <div class="pfi"><span class="pfy">✓</span>Demand forecasting</div>
+          <div class="pfi"><span class="pfy">✓</span>Competitor awareness</div>
+          <div class="pfi"><span class="pfy">✓</span>Unlimited AI workflows</div>
+          <div class="pfi"><span class="pfy">✓</span>Priority WhatsApp support</div>
+          <div class="pfi"><span class="pfy">✓</span>Custom onboarding session</div>
+        </div>
+        <button class="price-btn out" onclick="openModalPlan('pro')">Start with Pro →</button>
+        <div class="price-margin">~83% margin · Costs you ~$34/mo</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:22px;font-size:14px;color:var(--ash)" class="reveal">
+      No setup fee · No commission · Cancel anytime · 10-minute setup · Arabic + English
+    </div>
+  </div>
+</section>
+
+<!-- ROI CALCULATOR -->
+<section class="section" id="roi" style="padding-top:0">
+  <div class="wrap">
+    <div class="ey">ROI calculator</div>
+    <h2 class="sh reveal">See your exact return<br><em>before you pay a cent.</em></h2>
+    <div class="roi-box reveal">
+      <div class="roi-grid">
+        <div>
+          <div class="roi-lbl">Monthly bookings</div>
+          <input type="range" class="roi-slider" id="roi-bk" min="20" max="500" value="80" oninput="calcROI()"/>
+          <div class="roi-val" id="roi-bk-v">80 bookings/month</div>
+          <div class="roi-lbl">Average booking value (AED)</div>
+          <input type="range" class="roi-slider" id="roi-val" min="50" max="1000" value="200" oninput="calcROI()"/>
+          <div class="roi-val" id="roi-val-v">AED 200</div>
+          <div class="roi-lbl">Current no-show rate</div>
+          <input type="range" class="roi-slider" id="roi-ns" min="5" max="40" value="20" oninput="calcROI()"/>
+          <div class="roi-val" id="roi-ns-v">20%</div>
+          <div class="roi-lbl">Inactive clients (45+ days)</div>
+          <input type="range" class="roi-slider" id="roi-lc" min="10" max="300" value="60" oninput="calcROI()"/>
+          <div class="roi-val" id="roi-lc-v">60 clients</div>
+        </div>
+        <div>
+          <div class="roi-result">
+            <div class="roi-rl">Revenue lost to no-shows monthly</div>
+            <div class="roi-rn" style="color:var(--fire)" id="roi-r1">AED 3,200</div>
+            <div class="roi-rl">Revyo recovers (72% reduction)</div>
+            <div class="roi-rn" style="color:var(--jade)" id="roi-r2">+AED 2,304</div>
+            <div style="height:1px;background:var(--line);margin:12px 0"></div>
+            <div class="roi-rl">Revenue from reactivated clients</div>
+            <div class="roi-rn" style="color:var(--jade)" id="roi-r3">+AED 2,400</div>
+            <div style="height:1px;background:var(--line);margin:12px 0"></div>
+            <div class="roi-rl">Total monthly recovery</div>
+            <div class="roi-rn" style="color:var(--jade);font-size:36px" id="roi-total">AED 4,704</div>
+            <div style="background:var(--bg4);border-radius:8px;padding:10px 12px;margin-top:12px">
+              <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px"><span style="color:var(--ash)">Revyo Growth plan</span><span style="color:var(--fire)">$119/mo (~AED 437)</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:14px;font-weight:700"><span style="color:var(--ash)">Your ROI</span><span style="color:var(--jade)" id="roi-x">10x</span></div>
+            </div>
+            <button class="btn-p" style="width:100%;margin-top:14px;justify-content:center" onclick="openModal()">Get this ROI for my business →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section" id="proof" style="padding-top:0">
+  <div class="wrap">
+    <div class="ey">Real results</div>
+    <h2 class="sh reveal">UAE businesses love<br><em>what Revyo does.</em></h2>
+    <div class="proof-grid" id="proof-grid"></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="ey">Common questions</div>
+    <h2 class="sh reveal">Everything you<br><em>want to know.</em></h2>
+    <div style="max-width:740px" id="faq-list"></div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="final-cta reveal">
+      <div class="ey" style="text-align:center">Your competitors aren't waiting.</div>
+      <h2 class="sh" style="text-align:center;max-width:560px;margin:0 auto 14px">Stop losing AED.<br><em>Start automating today.</em></h2>
+      <p style="font-size:17px;color:var(--ash);text-align:center;margin-bottom:32px;max-width:460px;margin-left:auto;margin-right:auto;line-height:1.7">Join 50+ UAE businesses already recovering AED 6,000+/month on autopilot.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <button class="btn-p" onclick="openModal()" style="font-size:16px;padding:16px 36px">Start today — from $59/mo →</button>
+        <a class="btn-s" href="/dashboard">See live dashboard first</a>
+      </div>
+      <div style="margin-top:18px;font-size:13px;color:var(--ash3);text-align:center">No commission · No setup fee · Cancel anytime · 10-minute setup</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <a href="/" style="display:flex;align-items:center;gap:8px;text-decoration:none">
+      <div class="nav-mark">R</div>
+      <div class="nav-name" style="font-size:16px">Rev<em>yo</em></div>
+    </a>
+    <div class="footer-links">
+      <button class="fl" onclick="scrollTo('features')">Features</button>
+      <button class="fl" onclick="scrollTo('pricing')">Pricing</button>
+      <button class="fl" onclick="scrollTo('faq')">FAQ</button>
+      <a class="fl" href="/dashboard">Dashboard</a>
+      <a class="fl" href="/book/demo">Book demo</a>
+      <button class="fl" onclick="showTC()">Terms</button>
+      <a class="fl" href="https://instagram.com/revyo.ae" target="_blank">Instagram</a>
+      <a class="fl" href="https://linkedin.com/company/revyo" target="_blank">LinkedIn</a>
+      <a class="fl" href="https://wa.me/971500000000?text=Hi%2C%20I'm%20interested%20in%20Revyo" target="_blank">WhatsApp us</a>
+      <a class="fl" href="mailto:hello@revyo.ae">hello@revyo.ae</a>
+    </div>
+    <div style="font-size:12px;color:var(--ash3)">© 2026 Revyo · UAE 🇦🇪</div>
+  </div>
+</footer>
+
+<!-- STICKY MOBILE CTA -->
+<div class="sticky-mob" id="sticky-mob">
+  <div class="sticky-mob-inner">
+    <div class="sticky-mob-text">
+      <strong>Stop losing AED every day</strong>
+      From $59/month · Cancel anytime
+    </div>
+    <button class="sticky-mob-btn" onclick="openModal()">Start today →</button>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <div class="modal-x" onclick="closeModal()">✕</div>
+    <div id="modal-form">
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:900;color:white;letter-spacing:-.04em;margin-bottom:5px">Start with Revyo</div>
+      <div style="font-size:13px;color:var(--ash);margin-bottom:22px;line-height:1.6">Join 50+ UAE businesses. Setup in 10 minutes. Cancel anytime.</div>
+      <div style="font-size:11px;font-weight:700;color:var(--ash);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">Choose your plan</div>
+      <div class="plan-select">
+        <div class="plan-opt" id="mp-starter" onclick="selPlan('starter')"><div class="plan-opt-n">Starter</div><div class="plan-opt-p">$59</div><div class="plan-opt-s">/month</div></div>
+        <div class="plan-opt on" id="mp-growth" onclick="selPlan('growth')"><div class="plan-opt-n">Growth ⭐</div><div class="plan-opt-p">$119</div><div class="plan-opt-s">/month</div></div>
+        <div class="plan-opt" id="mp-pro" onclick="selPlan('pro')"><div class="plan-opt-n">Pro</div><div class="plan-opt-p">$199</div><div class="plan-opt-s">/month</div></div>
+      </div>
+      <div class="fi-row">
+        <div class="fi"><label>Your name</label><input type="text" id="m-name" placeholder="Nour Al-Rashidi"/></div>
+        <div class="fi"><label>Business name</label><input type="text" id="m-biz" placeholder="Glow Beauty Dubai"/></div>
+      </div>
+      <div class="fi"><label>WhatsApp number</label><input type="tel" id="m-phone" placeholder="+971 50 000 0000"/></div>
+      <div class="fi"><label>Email</label><input type="email" id="m-email" placeholder="you@business.com"/></div>
+      <div class="fi"><label>Business type</label>
+        <select id="m-niche">
+          <option value="">Select your niche...</option>
+          <option>Beauty &amp; Salons</option><option>Medical Clinic</option>
+          <option>Restaurant &amp; Café</option><option>Dental Center</option>
+          <option>Barbershop</option><option>Gym &amp; Fitness</option>
+          <option>Spa &amp; Wellness</option><option>Other</option>
+        </select>
+      </div>
+      <div class="tc-row">
+        <input type="checkbox" id="tc-cb"/>
+        <label for="tc-cb">I agree to the <button onclick="showTC()" style="color:var(--ash);background:none;border:none;cursor:pointer;text-decoration:underline;font-family:inherit;font-size:12px;padding:0">Terms &amp; Conditions</button> and cancellation policy.</label>
+      </div>
+      <button class="modal-btn" onclick="submitLead()">Confirm &amp; get started →</button>
+      <div style="text-align:center;font-size:12px;color:var(--ash3);margin-top:10px">We'll reach out on WhatsApp within 2 hours to set everything up.</div>
+    </div>
+    <div class="modal-success" id="modal-success">
+      <div style="font-size:48px;margin-bottom:16px">🎉</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:900;color:white;margin-bottom:8px">You're in!</div>
+      <p style="color:var(--ash);font-size:14px;line-height:1.7;margin-bottom:20px">We'll reach out on WhatsApp within 2 hours to set up your dashboard, booking page, and automations. Get ready to stop losing AED.</p>
+      <button class="modal-btn" onclick="closeModal()">Got it — I'm ready!</button>
+    </div>
+  </div>
+</div>
+
+<!-- TC PAGE -->
+<div id="tc-page">
+  <div style="max-width:720px;margin:0 auto">
+    <button onclick="hideTC()" style="background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:8px 16px;color:var(--sky);cursor:pointer;font-family:inherit;margin-bottom:24px;font-size:13px">← Back</button>
+    <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-size:28px;font-weight:900;color:white;margin-bottom:24px">Terms &amp; Conditions</h2>
+    <div style="font-size:14px;color:var(--ash);line-height:1.8">
+      <h3 style="color:white;margin:20px 0 8px">1. Service</h3><p>Revyo provides business automation software for UAE service businesses. All features are delivered as described on the pricing page. Revyo is a flat monthly subscription — zero booking commission, ever.</p>
+      <h3 style="color:white;margin:20px 0 8px">2. Payments</h3><p>Subscriptions are billed monthly. No setup fees. Cancel anytime from your dashboard with no penalty or fees.</p>
+      <h3 style="color:white;margin:20px 0 8px">3. Your Data</h3><p>You own 100% of your client data. We never sell or share it. Stored securely with encryption. Export everything as CSV anytime.</p>
+      <h3 style="color:white;margin:20px 0 8px">4. Deposits</h3><p>Deposit handling is between you and your clients. Revyo provides the payment infrastructure but does not hold payments. You are responsible for your deposit and refund policy.</p>
+      <h3 style="color:white;margin:20px 0 8px">5. Fair Use</h3><p>SMS usage limits: Starter 500/month, Growth 2,000/month, Pro 5,000/month. Excess may incur additional charges.</p>
+      <h3 style="color:white;margin:20px 0 8px">6. Cancellation</h3><p>Cancel anytime, no penalty. Data accessible for 30 days post-cancellation for export.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+// GUMROAD — replace REPLACE_STARTER, REPLACE_GROWTH, REPLACE_PRO with real IDs
+const GUMROAD={starter:'https://gumroad.com/l/REPLACE_STARTER',growth:'https://gumroad.com/l/REPLACE_GROWTH',pro:'https://gumroad.com/l/REPLACE_PRO'};
+let selectedPlan='growth';
+
+// NICHES
+const NICHES={
+  salon:{biz:'Glow Beauty Dubai',ico:'G',color:'#ff3d1f',slug:'glow-beauty',
+    stats:[{v:'24',l:'Bookings'},{v:'AED 3,200',l:'Recovered'},{v:'8',l:'Lost clients'},{v:'48',l:'SMS fired'}],
+    bookings:[{n:'Sara Al-Rashidi',s:'Full Highlights',t:'Today 3PM',st:'confirmed'},{n:'Fatima Hassan',s:'Blow Dry',t:'Today 5PM',st:'confirmed'},{n:'Nour Al-Qasimi',s:'Keratin',t:'Tomorrow',st:'pending'}],
+    lost:[{n:'Lina Khoury',d:'62 days',sp:'AED 450'},{n:'Reem Al-Farsi',d:'55 days',sp:'AED 220'},{n:'Dana Hassan',d:'48 days',sp:'AED 680'}],
+    ai:"AI drafted 3 Instagram posts · Replied to Sara's 5★ Google review · Birthday offer sent to Ahmed",
+    services:[{n:'Full Highlights',p:'AED 450',dep:true},{n:'Blow Dry + Style',p:'AED 180',dep:false},{n:'Keratin Treatment',p:'AED 680',dep:true},{n:'Cut + Finish',p:'AED 220',dep:false}],
+    infoTitle:'What your clients see when they book',infoSub:'Branded booking page — service, date, time, deposit. SMS confirmation fires automatically.',dep:'🔒 AED 100 deposit to confirm slot',
+    features:[{i:'📅',t:'24/7 online booking',d:'Book from Instagram bio, Google, or WhatsApp link'},{i:'🔒',t:'Deposit protection',d:'AED 100 deposit — no-shows down 72%'},{i:'📱',t:'Auto reminders',d:'24h and 2h SMS before every appointment'}]},
+  clinic:{biz:'Al Shifa Medical Center',ico:'A',color:'#0ea5e9',slug:'al-shifa',
+    stats:[{v:'18',l:'Appointments'},{v:'AED 5,600',l:'Recovered'},{v:'12',l:'Lost patients'},{v:'36',l:'SMS fired'}],
+    bookings:[{n:'Ahmed Hassan',s:'GP Consultation',t:'Today 10AM',st:'confirmed'},{n:'Mariam Al-Zaabi',s:'Dermatology',t:'Today 2PM',st:'confirmed'},{n:'Omar Al-Farsi',s:'Blood Test',t:'Tomorrow',st:'pending'}],
+    lost:[{n:'Khalid Al-Mansoori',d:'58 days',sp:'AED 400'},{n:'Sara Khoury',d:'51 days',sp:'AED 250'},{n:'Fatima Hassan',d:'47 days',sp:'AED 200'}],
+    ai:'Post-visit follow-up sent to 5 patients · Appointment reminders fired · Weekly report to Dr. Hassan',
+    services:[{n:'GP Consultation',p:'AED 200',dep:false},{n:'Dermatology',p:'AED 400',dep:true},{n:'Blood Test',p:'AED 150',dep:false},{n:'Follow-up',p:'AED 150',dep:false}],
+    infoTitle:'Patients book appointments 24/7',infoSub:'No phone calls to reception. Intake notes sent automatically. Deposits on specialist slots.',dep:'🔒 AED 200 deposit for specialist',
+    features:[{i:'📋',t:'Patient self-booking',d:'Book from Google Maps or your website'},{i:'💊',t:'Post-visit follow-up',d:'Automatic SMS with care instructions after every visit'},{i:'🔄',t:'Recall automation',d:'6-month checkup reminders sent automatically'}]},
+  restaurant:{biz:'Levant Kitchen Dubai',ico:'L',color:'#e05c1a',slug:'levant-kitchen',
+    stats:[{v:'31',l:'Reservations'},{v:'AED 4,800',l:'Recovered'},{v:'15',l:'Lapsed guests'},{v:'62',l:'SMS fired'}],
+    bookings:[{n:'Rashid Al-Mansoori',s:'Table for 4',t:'Tonight 8PM',st:'confirmed'},{n:'Lina Khoury',s:'Private Dining',t:'Tonight 7PM',st:'confirmed'},{n:'Sara Hassan',s:'Table for 2',t:'Tomorrow',st:'pending'}],
+    lost:[{n:'Omar Al-Khalil',d:'52 days',sp:'AED 320'},{n:'Nour Al-Rashidi',d:'49 days',sp:'AED 180'},{n:'Ahmed Hassan',d:'46 days',sp:'AED 450'}],
+    ai:"Birthday dinner offer sent to 3 guests · Replied to 2 Google reviews · Tonight's special posted on Instagram",
+    services:[{n:'Table for 2',p:'Free',dep:false},{n:'Table for 4',p:'AED 50 deposit',dep:true},{n:'Table for 6+',p:'AED 100 deposit',dep:true},{n:'Private Dining',p:'AED 200 deposit',dep:true}],
+    infoTitle:'Guests reserve tables from anywhere',infoSub:'Instagram bio, Google Maps, or WhatsApp. Occasion detection adds a personal touch.',dep:'🔒 AED 50 deposit for peak nights',
+    features:[{i:'🎉',t:'Occasion detection',d:'Birthday/anniversary triggers personalised upsell'},{i:'🪑',t:'Table management',d:'Party size, time, occasion — all captured'},{i:'📱',t:'No-show protection',d:'2h reminder + deposit forfeiture on no-shows'}]},
+  barber:{biz:'The Barber Club JLT',ico:'B',color:'#8b5cf6',slug:'barber-club',
+    stats:[{v:'42',l:'Cuts/month'},{v:'AED 2,400',l:'Recovered'},{v:'6',l:'Inactive clients'},{v:'84',l:'SMS fired'}],
+    bookings:[{n:'Omar Hassan',s:'Haircut + Finish',t:'Today 11AM',st:'confirmed'},{n:'Zaid Al-Farsi',s:'Cut + Beard',t:'Today 1PM',st:'confirmed'},{n:'Khalid Al-Rashidi',s:'Beard Trim',t:'Today 3PM',st:'pending'}],
+    lost:[{n:'Ahmed Al-Mansoori',d:'53 days',sp:'AED 120'},{n:'Mohammed Hassan',d:'50 days',sp:'AED 80'},{n:'Ali Al-Zaabi',d:'46 days',sp:'AED 120'}],
+    ai:'Reactivation sent to 6 inactive clients · Walk-in queue SMS to 3 clients · Weekly report delivered',
+    services:[{n:'Haircut + Finish',p:'AED 80',dep:false},{n:'Beard Trim',p:'AED 50',dep:false},{n:'Cut + Beard',p:'AED 120',dep:false},{n:'Kids Cut',p:'AED 60',dep:false}],
+    infoTitle:'Clients book or join the walk-in queue',infoSub:'Online booking for scheduled slots. Walk-ins join a digital queue from their phone.',dep:'',
+    features:[{i:'📲',t:'Walk-in queue',d:'Clients join digitally, get SMS when ready'},{i:'📅',t:'Online booking',d:'Book from Instagram bio or WhatsApp link'},{i:'🔄',t:'Re-engagement',d:'Clients gone 4+ weeks get an automatic nudge'}]},
+  dental:{biz:'Pearl Dental Center',ico:'P',color:'#0ea5e9',slug:'pearl-dental',
+    stats:[{v:'16',l:'Appointments'},{v:'AED 6,400',l:'Recovered'},{v:'9',l:'Lapsed patients'},{v:'32',l:'SMS fired'}],
+    bookings:[{n:'Dana Al-Mansoori',s:'Teeth Cleaning',t:'Today 9AM',st:'confirmed'},{n:'Mariam Al-Zaabi',s:'Cosmetic Consult',t:'Today 11AM',st:'confirmed'},{n:'Ahmed Hassan',s:'Orthodontics',t:'Tomorrow',st:'pending'}],
+    lost:[{n:'Sara Al-Qasimi',d:'67 days',sp:'AED 300'},{n:'Omar Hassan',d:'58 days',sp:'AED 500'},{n:'Fatima Al-Mansoori',d:'51 days',sp:'AED 150'}],
+    ai:'6-month recall sent to 8 patients · Treatment follow-up for 3 consultations · Review requests sent',
+    services:[{n:'Dental Checkup',p:'AED 150',dep:false},{n:'Teeth Cleaning',p:'AED 300',dep:false},{n:'Cosmetic Consult',p:'AED 200',dep:true},{n:'Orthodontics',p:'AED 500',dep:true}],
+    infoTitle:'Patients self-book without calling',infoSub:'No phone calls needed. Treatment follow-ups and recall reminders sent automatically.',dep:'🔒 AED 200 deposit for specialist',
+    features:[{i:'📋',t:'Patient self-booking',d:'Book directly — no phone calls needed'},{i:'💌',t:'Treatment follow-up',d:'Automatic SMS after every consultation'},{i:'🔁',t:'6-month recall',d:'Checkup reminders sent automatically'}]},
+  gym:{biz:'Iron Gym Dubai Marina',ico:'I',color:'#00d97e',slug:'iron-gym',
+    stats:[{v:'28',l:'Sessions'},{v:'AED 2,800',l:'Recovered'},{v:'11',l:'Inactive members'},{v:'56',l:'SMS fired'}],
+    bookings:[{n:'Carlos R.',s:'PT Session',t:'Today 7AM',st:'confirmed'},{n:'Aisha Al-Hamdan',s:'Yoga Class',t:'Today 9AM',st:'confirmed'},{n:'Mike Johnson',s:'First Visit',t:'Today 6PM',st:'pending'}],
+    lost:[{n:'Reem Al-Farsi',d:'55 days',sp:'AED 250'},{n:'Khalid Hassan',d:'49 days',sp:'AED 500'},{n:'Sara Al-Mansoori',d:'46 days',sp:'AED 80'}],
+    ai:'Trial follow-up sent → 1 converted · Inactive members reactivation sent · Monday report delivered',
+    services:[{n:'PT Session 60min',p:'AED 250',dep:true},{n:'Group Class',p:'AED 80',dep:false},{n:'First Session Free',p:'Free',dep:false},{n:'Body Assessment',p:'AED 150',dep:false}],
+    infoTitle:'Members book sessions and classes online',infoSub:'PT sessions, classes, and trials booked 24/7. Trial follow-ups convert 35% more trials.',dep:'🔒 AED 50 deposit for PT sessions',
+    features:[{i:'🎯',t:'Trial converter',d:'Auto follow-up converts 35% more trials to members'},{i:'📉',t:'Churn stopper',d:'Detects inactive members and re-engages automatically'},{i:'📅',t:'Class booking',d:'Clients book from Instagram or website'}]}
+};
+
+const PROOF=[
+  {t:"Before Revyo I was losing AED 3,000+ every month to no-shows. The deposit system fixed it. I recovered more than a year's subscription in month two.",n:'Nour Al-Rashidi',r:'Owner, Glow Beauty Dubai',av:'N',c:'#ff3d1f'},
+  {t:'The lost client campaign is insane. I sent one campaign to 45 lapsed clients. 11 booked the same week. AED 2,200 from one click.',n:'Dr. Ahmed Hassan',r:'Al Shifa Medical Center',av:'A',c:'#0ea5e9'},
+  {t:'The AI automation saves me hours every week. It writes my Instagram posts, replies to Google reviews, and sends birthday offers. My staff can\'t believe it.',n:'Sara Al-Qasimi',r:'Pearl Dental Center',av:'S',c:'#8b5cf6'},
+  {t:'Revenue dashboard shows exactly what Revyo recovered this month. Last month: AED 4,800. That\'s 10x what I pay for the platform.',n:'Omar Al-Khalil',r:'Levant Kitchen Dubai',av:'O',c:'#e05c1a'},
+  {t:'Monday report every week shows exactly what happened — bookings, revenue, who came back. I check it before anything else.',n:'Khalid Al-Mansoori',r:'The Barber Club JLT',av:'K',c:'#00d97e'},
+  {t:"Arabic support sealed the deal. Our clients prefer Arabic messages and the booking page is fully Arabic. No-show rate dropped from 35% to under 8%.",n:'Mariam Al-Zaabi',r:'Iron Gym Dubai Marina',av:'M',c:'#ffb800'}
+];
+
+const FAQS=[
+  {q:'Does Revyo actually send real SMS messages?',a:'Yes — once you connect your Twilio account (takes 20 minutes, costs $20 in credits). During onboarding we walk you through every step. From that moment, every reminder, reactivation message, and follow-up fires for real.'},
+  {q:'Do I need technical skills to set up Revyo?',a:'None. You sign up, tell us your business type, add your services and pricing, and your booking page is live. No coding, no complex settings. Most businesses are fully set up in under 10 minutes.'},
+  {q:'Will messages come from my own phone number?',a:'SMS reminders are sent from a Revyo number, but every message includes your business name and your WhatsApp number so clients can reach you directly. WhatsApp automation from your own business number is coming Q4 2026.'},
+  {q:'How does the AI automation work?',a:'Revyo uses Claude AI (Anthropic) to generate personalised messages, social media posts, and business insights. For reactivation it knows the client\'s name, last service, and time away — so every message feels personal. For Instagram it creates content based on your business and any promotions you want to run.'},
+  {q:'What happens to my clients\' data?',a:'You own 100% of your client data. Stored securely with encryption. Export everything as CSV from your dashboard at any time. We never sell or share your data.'},
+  {q:'Can I cancel anytime?',a:'Yes. No contracts, no lock-in, no penalties. Cancel from your dashboard settings. Data stays accessible for 30 days after cancellation for export.'},
+  {q:'Is there a commission on bookings?',a:'Zero. Never. You keep 100% of every booking and deposit. Flat monthly subscription — no per-transaction fees, no revenue share. This is one of the biggest differences from competitors like Fresha who take 20-30%.'},
+  {q:'Do you support Arabic?',a:'Yes — both the client-facing booking page and all SMS messages support Arabic and English. All AI-generated messages are also available in Arabic.'},
+];
+
+// ── TICKER ──
+const TICKS=['🎉 Glow Beauty Dubai recovered <strong>AED 3,200</strong> this month','📅 Al Shifa Medical — <strong>18 bookings</strong> this week via Revyo','🔄 Levant Kitchen — <strong>11 lapsed clients</strong> came back after campaign','⭐ Pearl Dental — 5★ Google review reply drafted in <strong>3 seconds</strong>','📱 The Barber Club — Instagram post written by <strong>AI in 8 seconds</strong>','💰 Iron Gym — <strong>AED 2,800</strong> recovered from no-shows this month','🎂 Birthday offer sent to 3 clients today — <strong>2 booked</strong>','🤖 AI advisor: <strong>"Run a Tuesday promo — slots are 40% empty"</strong>'];
+const tickEl=document.getElementById('ticker');
+const all=[...TICKS,...TICKS];
+tickEl.innerHTML=all.map(t=>`<span class="ticker-item">${t}<span class="ticker-sep"></span></span>`).join('');
+
+// ── DEMO ──
+let activeN='salon',dv='owner',camSim=false,selSvc=null;
+
+function switchNiche(n,btn){activeN=n;document.querySelectorAll('.dnt').forEach(b=>b.classList.remove('on'));btn.classList.add('on');renderOwner();renderClient();selSvc=null;resetClientUI();}
+function switchView(v){dv=v;document.getElementById('dv-owner').style.display=v==='owner'?'block':'none';document.getElementById('dv-client').style.display=v==='client'?'block':'none';document.getElementById('vt-owner').classList.toggle('on',v==='owner');document.getElementById('vt-client').classList.toggle('on',v==='client');}
+
+function renderOwner(){
+  const N=NICHES[activeN];if(!N)return;
+  document.getElementById('d-biz').textContent=N.biz;
+  document.getElementById('d-ai').textContent=N.ai;
+  document.getElementById('d-stats').innerHTML=N.stats.map(s=>`<div class="ds"><div class="ds-v">${s.v}</div><div class="ds-l">${s.l}</div></div>`).join('');
+  document.getElementById('d-bks').innerHTML=N.bookings.map(b=>`<div class="demo-bk-item"><div><div style="font-weight:600;color:white;font-size:12px">${b.n}</div><div style="color:var(--ash);font-size:11px">${b.s}</div></div><div style="text-align:right"><div style="font-size:11px;color:var(--ash2)">${b.t}</div><span style="font-size:10px;font-weight:700;padding:1px 6px;border-radius:3px;background:${b.st==='confirmed'?'var(--jade2)':'var(--gold2)'};color:${b.st==='confirmed'?'var(--jade)':'var(--gold)'}">${b.st}</span></div></div>`).join('');
+  document.getElementById('d-lost').innerHTML=N.lost.map(c=>`<div class="demo-bk-item"><div><div style="font-weight:600;color:white;font-size:12px">${c.n}</div><div style="color:var(--ash);font-size:11px">Last visit: ${c.d} ago</div></div><div style="color:var(--jade);font-weight:600;font-size:12px">${c.sp}</div></div>`).join('');
+  const btn=document.getElementById('d-send');btn.textContent=`📤 Send reactivation to ${N.lost.length} lost clients →`;btn.style.color='var(--fire)';btn.style.background='var(--fire3)';
+}
+
+function renderClient(){
+  const N=NICHES[activeN];if(!N)return;
+  document.getElementById('c-url').textContent='revyo.ae/book/'+N.slug;
+  document.getElementById('c-av').textContent=N.ico;document.getElementById('c-av').style.background=N.color;
+  document.getElementById('c-biz').textContent=N.biz;
+  document.getElementById('c-info-t').textContent=N.infoTitle;
+  document.getElementById('c-info-s').textContent=N.infoSub;
+  const dep=document.getElementById('c-dep');if(dep){dep.textContent=N.dep;dep.style.display=N.dep?'block':'none';}
+  document.getElementById('c-svcs').innerHTML=N.services.map((s,i)=>`<div class="svc-demo" onclick="selSvcDemo(${i})" id="sd-${i}"><div><div style="font-size:11px;font-weight:600;color:white">${s.n}</div>${s.dep?'<div style="font-size:9px;color:var(--ash3)">deposit req</div>':''}</div><div style="font-size:12px;font-weight:700;color:var(--fire)">${s.p}</div></div>`).join('');
+  document.getElementById('c-feats').innerHTML=N.features.map(f=>`<div style="display:flex;gap:10px;padding:10px 13px;background:var(--bg2);border:1px solid var(--line);border-radius:10px;align-items:flex-start"><div style="font-size:16px;flex-shrink:0">${f.i}</div><div><div style="font-size:13px;font-weight:700;color:white;margin-bottom:2px">${f.t}</div><div style="font-size:12px;color:var(--ash)">${f.d}</div></div></div>`).join('');
+}
+
+function selSvcDemo(i){
+  selSvc=NICHES[activeN].services[i];
+  document.querySelectorAll('[id^="sd-"]').forEach((el,idx)=>el.classList.toggle('on',idx===i));
+  document.getElementById('c-sel').style.display='block';document.getElementById('c-sel-n').textContent=selSvc.n;
+  const slots=['09:00','10:00','11:30','14:00','15:00','16:30','18:00'],taken=['10:00','15:00'];
+  document.getElementById('c-times').style.display='block';
+  document.getElementById('c-slots').innerHTML=slots.map(t=>`<div onclick="${taken.includes(t)?'':'selTimeDemo(\''+t+'\')'}" style="padding:6px;text-align:center;border-radius:5px;font-size:11px;font-weight:600;cursor:${taken.includes(t)?'not-allowed':'pointer'};background:var(--bg4);border:1.5px solid var(--line);color:${taken.includes(t)?'var(--ash3)':'var(--sky)'};transition:all .2s;text-decoration:${taken.includes(t)?'line-through':'none'}" id="dt-${t}">${t}</div>`).join('');
+}
+function selTimeDemo(t){document.querySelectorAll('[id^="dt-"]').forEach(el=>{el.style.background=el.id==='dt-'+t?'var(--fire3)':'var(--bg4)';el.style.borderColor=el.id==='dt-'+t?'var(--fire)':'var(--line)';el.style.color=el.id==='dt-'+t?'var(--fire)':'var(--sky)';});document.getElementById('c-form').style.display='block';}
+function simBook(){['c-svcs','c-sel','c-times','c-form'].forEach(id=>{const el=document.getElementById(id);if(el)el.style.display='none';});document.getElementById('c-done').style.display='block';}
+function resetBook(){selSvc=null;resetClientUI();renderClient();}
+function resetClientUI(){['c-sel','c-times','c-form','c-done'].forEach(id=>{const el=document.getElementById(id);if(el)el.style.display='none';});const svcs=document.getElementById('c-svcs');if(svcs){svcs.style.display='block';}}
+function simSend(){if(camSim)return;camSim=true;const btn=document.getElementById('d-send');const N=NICHES[activeN];btn.textContent='⏳ Sending personalised messages...';btn.style.color='var(--gold)';btn.style.background='var(--gold2)';setTimeout(()=>{btn.textContent=`✅ Sent to ${N.lost.length} clients! ~${Math.ceil(N.lost.length*.2)} expected to rebook`;btn.style.color='var(--jade)';btn.style.background='var(--jade2)';setTimeout(()=>{btn.textContent=`📤 Send reactivation to ${N.lost.length} lost clients →`;btn.style.color='var(--fire)';btn.style.background='var(--fire3)';camSim=false;},4000);},1800);}
+
+// ── PROOF + FAQ ──
+document.getElementById('proof-grid').innerHTML=PROOF.map(p=>`<div class="proof-card"><div class="proof-stars">★★★★★</div><p class="proof-text">"${p.t}"</p><div class="proof-author"><div class="proof-av" style="background:${p.c}">${p.av}</div><div><div style="font-size:13px;font-weight:700;color:white">${p.n}</div><div style="font-size:11px;color:var(--ash)">${p.r}</div></div></div></div>`).join('');
+document.getElementById('faq-list').innerHTML=FAQS.map((f,i)=>`<div class="faq-item" onclick="toggleFAQ(${i})"><div class="faq-q">${f.q}<span class="faq-ico" id="fi-${i}">+</span></div><div class="faq-a" id="fa-${i}">${f.a}</div></div>`).join('');
+function toggleFAQ(i){const a=document.getElementById('fa-'+i),ico=document.getElementById('fi-'+i);const open=a.classList.contains('open');document.querySelectorAll('.faq-a').forEach(e=>e.classList.remove('open'));document.querySelectorAll('.faq-ico').forEach(e=>{e.classList.remove('open');e.textContent='+';});if(!open){a.classList.add('open');ico.classList.add('open');}}
+
+// ── ROI ──
+function calcROI(){const bk=+document.getElementById('roi-bk').value,val=+document.getElementById('roi-val').value,ns=+document.getElementById('roi-ns').value/100,lc=+document.getElementById('roi-lc').value;document.getElementById('roi-bk-v').textContent=bk+' bookings/month';document.getElementById('roi-val-v').textContent='AED '+val;document.getElementById('roi-ns-v').textContent=Math.round(ns*100)+'%';document.getElementById('roi-lc-v').textContent=lc+' clients';const nsL=Math.round(bk*ns*val),nsR=Math.round(nsL*.72),lcR=Math.round(lc*.2*val),total=nsR+lcR,cost=Math.round(119*3.67),roi=total>0?Math.round(total/cost):0;document.getElementById('roi-r1').textContent='AED '+nsL.toLocaleString()+'/mo';document.getElementById('roi-r2').textContent='+AED '+nsR.toLocaleString()+'/mo';document.getElementById('roi-r3').textContent='+AED '+lcR.toLocaleString()+'/mo';document.getElementById('roi-total').textContent='AED '+total.toLocaleString()+'/mo';document.getElementById('roi-x').textContent=roi+'x return';}
+
+// ── MODAL ──
+function openModal(){document.getElementById('modal').classList.add('on');}
+function openModalPlan(p){selPlan(p);openModal();}
+function closeModal(){document.getElementById('modal').classList.remove('on');document.getElementById('modal-success').style.display='none';document.getElementById('modal-form').style.display='block';}
+function selPlan(p){selectedPlan=p;['starter','growth','pro'].forEach(x=>document.getElementById('mp-'+x)?.classList.toggle('on',x===p));}
+function submitLead(){const name=document.getElementById('m-name').value.trim(),phone=document.getElementById('m-phone').value.trim(),email=document.getElementById('m-email').value.trim(),niche=document.getElementById('m-niche').value,agreed=document.getElementById('tc-cb').checked;if(!name||!phone||!email||!niche){alert('Please fill in all fields');return;}if(!agreed){alert('Please agree to the Terms & Conditions');return;}document.getElementById('modal-form').style.display='none';document.getElementById('modal-success').style.display='block';const url=GUMROAD[selectedPlan];if(url&&!url.includes('REPLACE'))setTimeout(()=>window.open(url,'_blank'),1200);}
+
+// ── UTILS ──
+function scrollTo(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'});}
+function showTC(){document.getElementById('tc-page').style.display='block';document.body.style.overflow='hidden';}
+function hideTC(){document.getElementById('tc-page').style.display='none';document.body.style.overflow='';}
+document.getElementById('modal').addEventListener('click',e=>{if(e.target===document.getElementById('modal'))closeModal();});
+
+// Sticky CTA: hide when hero CTA is visible
+const heroObs=new IntersectionObserver(entries=>{const s=document.getElementById('sticky-mob');if(s)s.style.display=entries[0].isIntersecting?'none':'block';},{threshold:0.1});
+const hb=document.querySelector('.hero-btns');if(hb)heroObs.observe(hb);
+
+// Scroll reveal
+const revEls=document.querySelectorAll('.reveal');
+const revObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');revObs.unobserve(e.target);}});},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+revEls.forEach(el=>revObs.observe(el));
+
+// Init
+document.addEventListener('DOMContentLoaded',()=>{renderOwner();renderClient();calcROI();});
+</script>
+</body>
+</html>
